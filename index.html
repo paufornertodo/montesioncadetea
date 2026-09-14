@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entreculturas Montesión · Cadete A</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#1745C4;
+  --azul-claro:#6E9BFF;
+  --noche:#0B2079;
+  --noche-2:#1637AE;
+  --oro:#F6BA1C;
+  --hueso:#EFF1F5;
+  --rojo:#C0392E;
+  --linea:rgba(255,255,255,.2);
+  --linea-oscura:rgba(11,32,121,.14);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--noche);
+  background-image:linear-gradient(180deg,#0B2079 0%,#123099 55%,#0B2079 100%);
+  background-attachment:fixed;
+  color:var(--hueso);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  font-variant-numeric:tabular-nums;
+}
+h1,h2,h3,.cifra{font-family:"Bricolage Grotesque","Bricolage Grotesque Fallback",system-ui,sans-serif;font-optical-sizing:auto}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{width:min(940px,100%);margin:0 auto;padding:0 20px}
+
+/* ---------- Portada ---------- */
+.hero{position:relative;min-height:82vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 32%}
+.hero::after{content:"";position:absolute;inset:0;background:
+   linear-gradient(180deg,rgba(11,32,121,.7) 0%,rgba(11,32,121,.12) 26%,rgba(11,32,121,.88) 70%,var(--noche) 100%)}
+.hero-inner{position:relative;z-index:2;padding:0 0 34px}
+.escudo-linea{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.escudo-linea span{width:26px;height:3px;background:var(--oro)}
+.escudo-linea p{margin:0;font-size:.82rem;letter-spacing:.14em;color:rgba(239,241,245,.82)}
+.hero h1{
+  margin:0;
+  font-size:clamp(2.6rem,10.5vw,5.1rem);
+  font-weight:800;
+  line-height:.92;
+  letter-spacing:-.028em;
+}
+.hero h1 em{font-style:normal;display:block;color:var(--oro)}
+.hero-sub{margin:14px 0 0;max-width:34ch;color:rgba(239,241,245,.78);font-size:1rem}
+.grito{margin:20px 0 0;padding-top:16px;border-top:2px solid var(--oro)}
+.grito p{margin:0;font-family:"Bricolage Grotesque",sans-serif;letter-spacing:-.01em;line-height:1}
+.grito .pregunta{font-size:clamp(.95rem,3.6vw,1.15rem);font-weight:600;color:rgba(255,255,255,.8)}
+.grito .respuesta{font-size:clamp(2rem,9vw,3.6rem);font-weight:800;color:var(--oro);letter-spacing:-.03em;margin-top:4px}
+
+.balance{position:relative;z-index:2;border-top:1px solid var(--linea);background:rgba(11,32,121,.6);backdrop-filter:blur(6px)}
+.balance-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.balance-grid div{padding:16px 20px;border-right:1px solid var(--linea)}
+.balance-grid div:last-child{border-right:0}
+.balance-grid b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:clamp(1.5rem,6vw,2.1rem);font-weight:800;line-height:1;letter-spacing:-.02em}
+.balance-grid small{display:block;margin-top:5px;font-size:.72rem;color:rgba(239,241,245,.62);letter-spacing:.04em}
+
+/* ---------- Navegación ---------- */
+nav{position:sticky;top:0;z-index:40;background:rgba(11,32,121,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
+.nav-in{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:9px 14px}
+.nav-in::-webkit-scrollbar{display:none}
+nav a{
+  flex:0 0 auto;text-decoration:none;font-size:.87rem;font-weight:500;
+  padding:7px 13px;border-radius:999px;color:rgba(239,241,245,.72);white-space:nowrap
+}
+nav a:hover{color:#fff;background:rgba(255,255,255,.08)}
+nav a:focus-visible,.foto:focus-visible,select:focus-visible,.cerrar:focus-visible{outline:2px solid var(--oro);outline-offset:2px}
+
+section{padding:52px 0 8px}
+.titulo{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 4px}
+.titulo h2{margin:0;font-size:clamp(1.5rem,5.6vw,2.05rem);font-weight:800;letter-spacing:-.02em}
+.titulo .cuenta{font-size:.82rem;color:rgba(239,241,245,.5)}
+.intro{margin:0 0 26px;color:rgba(239,241,245,.62);font-size:.93rem;max-width:56ch}
+
+/* ---------- Goleadores ---------- */
+.filtro{display:flex;align-items:center;gap:9px;margin:0 0 20px;font-size:.86rem;color:rgba(239,241,245,.6)}
+select{
+  font:inherit;font-size:.86rem;color:var(--hueso);background:var(--noche-2);
+  border:1px solid var(--linea);border-radius:8px;padding:6px 10px
+}
+.rank{list-style:none;margin:0;padding:0}
+.rank li{display:grid;grid-template-columns:1.6rem 1fr auto;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--linea)}
+.puesto{font-size:.8rem;color:rgba(239,241,245,.4);text-align:right}
+.rank .nombre{font-weight:500}
+.rank .barra{display:block;height:7px;margin-top:6px;background:var(--azul-claro);border-radius:2px;min-width:3px}
+.rank li:first-child .barra{background:var(--oro)}
+.rank li:first-child .nombre{color:var(--oro)}
+.goles{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.32rem;line-height:1;letter-spacing:-.02em}
+.goles small{font-weight:400;font-size:.68rem;color:rgba(239,241,245,.45);margin-left:3px;font-family:"IBM Plex Sans",sans-serif}
+.vacio{color:rgba(239,241,245,.5);font-size:.92rem;padding:22px 0;border-top:1px solid var(--linea)}
+
+.sub{margin:30px 0 10px;font-size:.82rem;font-weight:600;letter-spacing:.1em;color:var(--oro);text-transform:uppercase}
+.rank + .sub{margin-top:34px}
+
+/* ---------- Porteros ---------- */
+.porteros{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));margin-top:14px}
+.portero{border:1px solid var(--linea);border-left:3px solid var(--oro);padding:13px 15px}
+.portero .p-nombre{font-weight:600}
+.portero .p-dato{font-family:"Bricolage Grotesque",sans-serif;font-size:1.7rem;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.portero small{color:rgba(239,241,245,.55);font-size:.75rem}
+
+/* ---------- Partidos ---------- */
+.partido{border-top:1px solid var(--linea);padding:22px 0}
+.partido:last-of-type{border-bottom:1px solid var(--linea)}
+.p-meta{font-size:.75rem;letter-spacing:.05em;color:rgba(239,241,245,.45);margin-bottom:10px}
+.marcador{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px}
+.equipo{font-weight:600;font-size:1.02rem;line-height:1.25}
+.equipo.der{text-align:right}
+.equipo.mios{color:#fff}
+.equipo small{display:block;font-weight:400;font-size:.72rem;color:rgba(239,241,245,.45);margin-top:2px}
+.cifra{font-size:clamp(1.9rem,8vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1;white-space:nowrap}
+.cifra .sep{color:rgba(255,255,255,.38);margin:0 4px;font-weight:400}
+.gana{color:#fff}
+.pierde{color:#FF9C93}
+.ht{text-align:center;margin:9px 0 0;font-size:.74rem;letter-spacing:.06em;color:rgba(239,241,245,.55)}
+.detalle{margin-top:16px;display:grid;gap:16px;grid-template-columns:1fr;border-top:1px dashed var(--linea);padding-top:14px}
+@media(min-width:620px){.detalle{grid-template-columns:1.4fr 1fr}}
+.detalle h3{margin:0 0 8px;font-size:.78rem;font-weight:600;letter-spacing:.06em;color:rgba(239,241,245,.5)}
+.marcas{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 16px}
+.marcas li{display:flex;align-items:center;gap:7px;font-size:.92rem}
+.tally{display:flex;gap:2px}
+.tally i{width:4px;height:13px;background:#9FBEFF;border-radius:1px;display:block}
+.encajados .tally i{background:var(--rojo)}
+
+/* ---------- Formato de la competición ---------- */
+.formato{margin:0 0 22px;border-left:3px solid var(--oro);padding:2px 0 2px 15px}
+.formato div{display:grid;grid-template-columns:1fr;gap:1px;padding:5px 0}
+@media(min-width:560px){.formato div{grid-template-columns:120px 1fr;gap:14px}}
+.formato dt{font-size:.74rem;letter-spacing:.06em;color:var(--oro);padding-top:2px}
+.formato dd{margin:0;font-size:.9rem;color:rgba(239,241,245,.82);line-height:1.45}
+
+/* ---------- Próximo rival ---------- */
+.proximo{border:1px solid var(--linea);border-top:3px solid var(--oro);background:rgba(255,255,255,.06);padding:18px 18px 20px;margin-bottom:26px}
+.proximo .etiqueta{font-size:.72rem;letter-spacing:.1em;color:var(--oro);margin:0 0 6px}
+.proximo h3{margin:0;font-size:clamp(1.5rem,6vw,2rem);font-weight:800;letter-spacing:-.025em;line-height:1}
+.proximo .cuando{margin:6px 0 0;font-size:.85rem;color:rgba(239,241,245,.65)}
+.pr-datos{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));margin-top:16px;padding-top:14px;border-top:1px dashed var(--linea)}
+.pr-datos div b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:1.35rem;font-weight:800;line-height:1.1}
+.pr-datos .ancho{grid-column:1/-1}
+.pr-datos div b{font-size:1.35rem}
+.pr-datos .ancho b{font-size:1.05rem}
+.pr-datos div small{display:block;font-size:.7rem;color:rgba(239,241,245,.55)}
+.pr-sub{margin-top:16px;padding-top:14px;border-top:1px dashed var(--linea)}
+.pr-sub h4{margin:0 0 8px;font-size:.78rem;font-weight:600;letter-spacing:.06em;color:rgba(239,241,245,.55)}
+.pr-sub ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.92rem}
+.pr-nota{margin:14px 0 0;font-size:.88rem;color:rgba(239,241,245,.6)}
+
+.vivo-card{border-top-color:var(--oro);background:rgba(255,255,255,.09)}
+.vivo-marcador{margin:10px 0 4px}
+.vivo-card .cifra{font-size:clamp(2.2rem,10vw,3rem)}
+.vivo-card .pr-sub{margin-top:14px}
+.vivo{display:inline-block;background:var(--oro);color:#0B2079;font-weight:700;letter-spacing:.08em;padding:2px 7px;border-radius:3px;margin-left:6px;font-size:.68rem}
+.crono{list-style:none;margin:0;padding:0}
+.crono li{display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--linea)}
+.crono li:last-child{border-bottom:0}
+.cr-m{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1rem;color:var(--oro)}
+.ev-rival .cr-m,.ev-rival b{color:#FF9C93}
+.ev-parada .cr-m{font-size:.95rem}
+.ev-parada b{color:#9FBEFF}
+.crono i{font-style:normal;color:rgba(239,241,245,.6);font-size:.85rem}
+.crono small{display:block;font-size:.78rem;color:rgba(239,241,245,.55)}
+
+/* ---------- Galería ---------- */
+.galeria{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}
+@media(min-width:700px){.galeria{grid-template-columns:repeat(3,1fr)}
+  .galeria .foto:first-child{grid-column:span 2;grid-row:span 2}}
+.foto{position:relative;padding:0;border:0;background:var(--noche-2);cursor:zoom-in;overflow:hidden;aspect-ratio:1/1}
+.foto img{width:100%;height:100%;object-fit:cover}
+.foto figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:20px 12px 9px;font-size:.76rem;text-align:left;
+  background:linear-gradient(transparent,rgba(11,32,121,.92));color:rgba(255,255,255,.92)
+}
+
+/* ---------- Visor ---------- */
+.visor{position:fixed;inset:0;z-index:90;background:rgba(7,20,78,.97);display:none;align-items:center;justify-content:center;padding:16px}
+.visor.abierto{display:flex}
+.visor img{max-width:100%;max-height:86vh;object-fit:contain}
+.cerrar{position:absolute;top:14px;right:14px;background:none;border:1px solid var(--linea);color:#fff;font-size:1.4rem;line-height:1;width:42px;height:42px;border-radius:50%;cursor:pointer}
+
+footer{margin-top:56px;padding:24px 0 40px;border-top:1px solid var(--linea);font-size:.8rem;color:rgba(239,241,245,.42)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img src="fotos/huddle.jpg" alt="Charla del entrenador con el equipo antes de saltar a la pista">
+  <div class="hero-inner wrap">
+    <div class="escudo-linea"><span></span><p>Club Entreculturas Montesión · Fútbol sala</p></div>
+    <h1>Cadete A<em>Temporada 26/27</em></h1>
+    <p class="hero-sub">Resultados, goleadores y porteros, partido a partido.</p>
+    <div class="grito">
+      <p class="pregunta">¿QUÉ SOMOS?</p>
+      <p class="respuesta">¡GUERREROS!</p>
+    </div>
+  </div>
+  <div class="balance">
+    <div class="balance-grid wrap" id="balance"></div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-in">
+    <a href="#amistosos">Amistosos</a>
+    <a href="#clasificacion">1.ª fase</a>
+    <a href="#liga">Liga</a>
+    <a href="#copa">Copa de la Liga</a>
+    <a href="#copa-ffib">Copa FFIB</a>
+    <a href="#espana">C. de España</a>
+    <a href="#estadisticas">Goleadores y porteros</a>
+    <a href="#galeria">Galería</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <div id="competiciones"></div>
+
+  <section id="estadisticas">
+    <div class="titulo"><h2>Goleadores y porteros</h2><span class="cuenta" id="total-goles"></span></div>
+    <p class="intro">Todo lo que llevan los jugadores en la temporada. El filtro afecta a las dos listas.</p>
+    <div class="filtro">
+      <label for="f-comp">Competición</label>
+      <select id="f-comp"></select>
+    </div>
+    <h3 class="sub">Goles</h3>
+    <ol class="rank" id="lista-goleadores"></ol>
+    <h3 class="sub">Asistencias</h3>
+    <ol class="rank" id="lista-asistencias"></ol>
+    <h3 class="sub">Otros registros</h3>
+    <div class="porteros" id="lista-registros"></div>
+    <h3 class="sub">Portería</h3>
+    <div class="porteros" id="lista-porteros"></div>
+  </section>
+
+  <section id="galeria">
+    <div class="titulo"><h2>Galería</h2></div>
+    <p class="intro">Toca una foto para verla completa.</p>
+    <div class="galeria" id="galeria"></div>
+  </section>
+
+  <footer>
+    Web del Entreculturas Montesión Cadete A · Temporada 2026/27.<br>
+    Datos actualizados a mano después de cada partido.
+  </footer>
+</main>
+
+<div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button class="cerrar" id="cerrar" aria-label="Cerrar foto">×</button>
+  <img id="visor-img" src="" alt="">
+</div>
+
+<script src="datos.js"></script>
+<script>
+/* ===================== A partir de aquí, la web se monta sola ========== */
+
+const todos = COMPETICIONES.flatMap(c => c.partidos.map(p => {
+  const m = {...p, comp:c.id};
+  // Si el partido tiene cronología, los goleadores se calculan a partir de ella.
+  m.propios = (m.goles||[]).filter(g => !g.tipo);
+  if(m.propios.length && !(m.goleadores||[]).length){
+    const cuenta = new Map();
+    m.propios.forEach(g => cuenta.set(g.n, (cuenta.get(g.n)||0)+1));
+    m.goleadores = [...cuenta].map(([n,g])=>({n,g})).sort((a,b)=>b.g-a.g);
+  }
+  return m;
+}));
+const enJuego = m => m.estado === "descanso" || m.estado === "jugando";
+
+function balance(){
+  let g=0,e=0,p=0,gf=0,gc=0,viv=0;
+  todos.forEach(m=>{
+    gf+=m.gf; gc+=m.gc;
+    if(enJuego(m)){ viv++; return; }
+    m.gf>m.gc?g++:m.gf<m.gc?p++:e++;
+  });
+  const filas = [
+    [todos.length, (todos.length===1?"partido":"partidos") + (viv?` · ${viv} en juego`:"")],
+    [`${g}-${e}-${p}`, "ganados-empatados-perdidos"],
+    [gf, "goles a favor"],
+    [gc, "goles en contra"]
+  ];
+  document.getElementById("balance").innerHTML =
+    filas.map(([v,l])=>`<div><b>${v}</b><small>${l}</small></div>`).join("");
+}
+
+function eventoHTML(g){
+  if(g.tipo === "rival") return `<li class="ev-rival">
+      <span class="cr-m">${g.m||""}</span>
+      <span><b>Gol del rival</b>${g.encaja?`<small>encaja ${nombre(g.encaja)}</small>`:""}</span>
+    </li>`;
+  if(g.tipo === "parada") return `<li class="ev-parada">
+      <span class="cr-m">✋</span>
+      <span><b>${nombre(g.n)}</b> <i>${g.penalti?"penalti parado":"parada"}</i>${g.nota?`<small>${g.nota}</small>`:""}</span>
+    </li>`;
+  return `<li>
+      <span class="cr-m">${g.m||""}</span>
+      <span><b>${nombre(g.n)}</b>${g.nota?` <i>${g.nota}</i>`:""}${g.a?`<small>asistencia de ${nombre(g.a)}</small>`:""}</span>
+    </li>`;
+}
+
+function tally(n){
+  const max = Math.min(n, 12);
+  return `<span class="tally">${"<i></i>".repeat(max)}</span>`;
+}
+
+function pintarGoleadores(filtro){
+  const lista = todos.filter(m => filtro==="todas" || m.comp===filtro);
+  const mapa = new Map();
+  lista.forEach(m => m.goleadores.forEach(x => mapa.set(nombre(x.n), (mapa.get(nombre(x.n))||0) + x.g)));
+  const orden = [...mapa].sort((a,b) => b[1]-a[1] || a[0].localeCompare(b[0],"es"));
+  const total = orden.reduce((s,x)=>s+x[1],0);
+  const tope = orden.length ? orden[0][1] : 1;
+  const ol = document.getElementById("lista-goleadores");
+  document.getElementById("total-goles").textContent =
+    total ? `${total} goles en ${lista.length} ${lista.length===1?"partido":"partidos"}` : "";
+  if(!orden.length){
+    ol.innerHTML = `<li style="display:block"><p class="vacio" style="border:0;padding:14px 0">Todavía no hay goles en esta competición.</p></li>`;
+    return;
+  }
+  ol.innerHTML = orden.map(([n,g],i)=>`
+    <li>
+      <span class="puesto">${i+1}</span>
+      <span>
+        <span class="nombre">${n}</span>
+        <span class="barra" style="width:${Math.round(g/tope*100)}%"></span>
+      </span>
+      <span class="goles">${g}<small>${g===1?"gol":"goles"}</small></span>
+    </li>`).join("");
+}
+
+function pintarAsistencias(filtro){
+  const lista = todos.filter(m => filtro==="todas" || m.comp===filtro);
+  const mapa = new Map();
+  lista.forEach(m => (m.propios||[]).forEach(g => { if(g.a) mapa.set(nombre(g.a), (mapa.get(nombre(g.a))||0)+1); }));
+  const orden = [...mapa].sort((a,b)=>b[1]-a[1] || a[0].localeCompare(b[0],"es"));
+  const ol = document.getElementById("lista-asistencias");
+  if(!orden.length){
+    ol.innerHTML = `<li style="display:block"><p class="vacio" style="border:0;padding:8px 0">Todavía no hay asistencias anotadas.</p></li>`;
+    return;
+  }
+  const tope = orden[0][1];
+  ol.innerHTML = orden.map(([n,a],i)=>`
+    <li>
+      <span class="puesto">${i+1}</span>
+      <span>
+        <span class="nombre">${n}</span>
+        <span class="barra" style="width:${Math.round(a/tope*100)}%"></span>
+      </span>
+      <span class="goles">${a}<small>${a===1?"asist.":"asist."}</small></span>
+    </li>`).join("");
+}
+
+function pintarRegistros(filtro){
+  const lista = todos.filter(m => filtro==="todas" || m.comp===filtro);
+  const faltas = new Map(), penas = new Map();
+  lista.forEach(m => {
+    (m.propios||[]).forEach(g => {
+      if((g.nota||"").toLowerCase().includes("falta")) faltas.set(nombre(g.n), (faltas.get(nombre(g.n))||0)+1);
+    });
+    (m.goles||[]).forEach(g => {
+      if(g.tipo==="parada" && g.penalti) penas.set(nombre(g.n), (penas.get(nombre(g.n))||0)+1);
+    });
+  });
+  const suma = m => [...m.values()].reduce((a,b)=>a+b,0);
+  const detalle = m => [...m].sort((a,b)=>b[1]-a[1]).map(([n,v])=>`${n} ${v}`).join(" · ");
+  const cont = document.getElementById("lista-registros");
+  if(!faltas.size && !penas.size){ cont.innerHTML = `<p class="vacio">Sin registros todavía.</p>`; return; }
+  cont.innerHTML = `
+    ${faltas.size?`<div class="portero"><div class="p-nombre">Goles de falta</div>
+      <div class="p-dato">${suma(faltas)}</div><small>${detalle(faltas)}</small></div>`:""}
+    ${penas.size?`<div class="portero"><div class="p-nombre">Penaltis parados</div>
+      <div class="p-dato">${suma(penas)}</div><small>${detalle(penas)}</small></div>`:""}`;
+}
+
+function pintarPorteros(filtro){
+  const mapa = new Map();
+  const lista = todos.filter(m => filtro==="todas" || m.comp===filtro);
+  lista.forEach(m => (m.porteros||[]).forEach(p=>{
+    const a = mapa.get(nombre(p.n)) || {ge:0, pj:0, pp:0};
+    a.ge += p.ge; a.pj += 1;
+    mapa.set(nombre(p.n), a);
+  }));
+  lista.forEach(m => (m.goles||[]).forEach(g=>{
+    if(g.tipo==="parada" && g.penalti){
+      const a = mapa.get(nombre(g.n)) || {ge:0, pj:0, pp:0};
+      a.pp = (a.pp||0) + 1;
+      mapa.set(nombre(g.n), a);
+    }
+  }));
+  const cont = document.getElementById("lista-porteros");
+  if(!mapa.size){ cont.innerHTML = `<p class="vacio">Todavía no hay partidos en esta competición.</p>`; return; }
+  cont.innerHTML = [...mapa].sort((a,b)=>a[1].ge-b[1].ge).map(([n,d])=>`
+    <div class="portero">
+      <div class="p-nombre">${n}</div>
+      <div class="p-dato">${d.ge}</div>
+      <small>${d.ge===1?"gol encajado":"goles encajados"} en ${d.pj} ${d.pj===1?"partido":"partidos"}${d.pp?` · ${d.pp} ${d.pp===1?"penalti parado":"penaltis parados"}`:""}</small>
+    </div>`).join("");
+}
+
+function proximoHTML(p){
+  const c = p.clasificacion || {};
+  const hayTabla = c.puesto!=null || c.pj!=null || c.pts!=null;
+  const tabla = hayTabla ? `<div class="pr-datos">
+      ${c.puesto!=null?`<div><b>${c.puesto}º</b><small>en la tabla</small></div>`:""}
+      ${c.pj!=null?`<div><b>${c.pj}</b><small>partidos</small></div>`:""}
+      ${c.pts!=null?`<div><b>${c.pts}</b><small>puntos</small></div>`:""}
+      ${c.gf!=null?`<div><b>${c.gf}</b><small>goles a favor</small></div>`:""}
+      ${c.gc!=null?`<div><b>${c.gc}</b><small>goles en contra</small></div>`:""}
+    </div>` : "";
+  const log = (p.convocatoria || p.hora || p.campo) ? `<div class="pr-datos">
+      ${p.convocatoria?`<div><b>${p.convocatoria}</b><small>convocatoria</small></div>`:""}
+      ${p.hora?`<div><b>${p.hora}</b><small>inicio</small></div>`:""}
+      ${p.campo?`<div class="ancho"><b>${p.campo}</b><small>pista</small></div>`:""}
+    </div>` : "";
+  const ult = (p.ultimos||[]).length ? `<div class="pr-sub"><h4>Últimos resultados</h4>
+      <ul>${p.ultimos.map(x=>`<li>${x}</li>`).join("")}</ul></div>` : "";
+  const gol = (p.goleadores||[]).length ? `<div class="pr-sub"><h4>Sus goleadores</h4>
+      <ul>${p.goleadores.map(x=>`<li>${x.n} <b>${x.g}</b></li>`).join("")}</ul></div>` : "";
+  const nota = (!hayTabla && !ult && !gol && p.nota) ? `<p class="pr-nota">${p.nota}</p>` : "";
+  return `<div class="proximo">
+    <p class="etiqueta">PRÓXIMO PARTIDO</p>
+    <h3>${p.rival || "Rival por confirmar"}</h3>
+    ${[p.jornada, p.fecha].filter(Boolean).length?`<p class="cuando">${[p.jornada,p.fecha].filter(Boolean).join(" · ")}</p>`:""}
+    ${log}${tabla}${ult}${gol}${nota}
+  </div>`;
+}
+
+function vivoHTML(m, comp){
+  const log = PROXIMOS.find(p => p.competicion===comp.id && p.rival===m.rival) || {};
+  const estado = m.estado==="descanso" ? "DESCANSO" : "EN JUEGO";
+  const izq = m.casa ? EQUIPO : m.rival, der = m.casa ? m.rival : EQUIPO;
+  const gIzq = m.casa ? m.gf : m.gc, gDer = m.casa ? m.gc : m.gf;
+  const cuando = [log.jornada || comp.nombre, m.fecha || log.fecha, log.campo].filter(Boolean).join(" · ");
+  const crono = (m.goles||[]).length ? `<div class="pr-sub"><h4>Cómo va</h4>
+      <ol class="crono">${m.goles.map(g=>eventoHTML(g)).join("")}</ol></div>` : "";
+  return `<div class="proximo vivo-card">
+    <p class="etiqueta">PARTIDO <span class="vivo">${estado}</span></p>
+    <div class="marcador vivo-marcador">
+      <div class="equipo ${m.casa?"mios":""}">${izq}</div>
+      <div class="cifra">${gIzq}<span class="sep">–</span>${gDer}</div>
+      <div class="equipo der ${m.casa?"":"mios"}">${der}</div>
+    </div>
+    ${cuando?`<p class="cuando">${cuando}</p>`:""}
+    ${crono}
+  </div>`;
+}
+
+function pintarCompeticiones(){
+  document.getElementById("competiciones").innerHTML = COMPETICIONES.map(c=>{
+    const deEsta = todos.filter(m=>m.comp===c.id);
+    const vivos = deEsta.filter(enJuego);
+    const jugados = deEsta.filter(m=>!enJuego(m));
+    const rivalesConPartido = new Set(deEsta.map(m=>m.rival));
+    const previa = vivos.map(m=>vivoHTML(m,c)).join("")
+      + PROXIMOS.filter(p=>p.competicion===c.id && !rivalesConPartido.has(p.rival)).map(proximoHTML).join("");
+    const ficha = (c.formato||[]).length
+      ? `<dl class="formato">${c.formato.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>`
+      : "";
+    const cuerpo = jugados.length
+      ? jugados.map((m,i)=>partidoHTML(m,i+1,c)).join("")
+      : (vivos.length ? "" : `<p class="vacio">Sin partidos disputados todavía.</p>`);
+    const cuenta = deEsta.length ? `${deEsta.length} ${deEsta.length===1?"partido":"partidos"}` : "";
+    return `<section id="${c.id}">
+      <div class="titulo"><h2>${c.nombre}</h2><span class="cuenta">${cuenta}</span></div>
+      ${ficha}${previa}${cuerpo}
+    </section>`;
+  }).join("");
+}
+
+function partidoHTML(m, num, comp){
+  const gana = m.gf > m.gc, pierde = m.gf < m.gc;
+  const izq = m.casa ? EQUIPO : m.rival;
+  const der = m.casa ? m.rival : EQUIPO;
+  const gIzq = m.casa ? m.gf : m.gc;
+  const gDer = m.casa ? m.gc : m.gf;
+  const clase = gana ? "gana" : pierde ? "pierde" : "";
+  const estado = m.estado==="descanso" ? "DESCANSO" : m.estado==="jugando" ? "EN JUEGO" : "";
+  const meta = [comp.nombre + " " + num, m.fecha, m.casa ? "En casa" : "Fuera", m.campo].filter(Boolean).join(" · ")
+    + (estado ? ` <span class="vivo">${estado}</span>` : "");
+  const gol = (m.goles||[]).length
+    ? `<ol class="crono">${m.goles.map(g=>eventoHTML(g)).join("")}</ol>`
+    : `<ul class="marcas">${m.goleadores.map(x=>`<li>${tally(x.g)} ${nombre(x.n)} <b>${x.g}</b></li>`).join("") || "<li>—</li>"}</ul>`;
+  const por = (m.porteros||[]).map(x=>`<li>${tally(x.ge)} ${nombre(x.n)} <b>${x.ge}</b></li>`).join("");
+  return `<article class="partido">
+    <p class="p-meta">${meta}</p>
+    <div class="marcador">
+      <div class="equipo ${m.casa?"mios":""}">${izq}</div>
+      <div class="cifra ${clase}">${gIzq}<span class="sep">–</span>${gDer}</div>
+      <div class="equipo der ${m.casa?"":"mios"}">${der}</div>
+    </div>
+    ${m.descanso?`<p class="ht">Al descanso, ${m.descanso.replace("-","–")}</p>`:""}
+    <div class="detalle">
+      <div><h3>Goles del Montesión</h3>${gol}</div>
+      <div class="encajados"><h3>Portero</h3><ul class="marcas">${por || "<li>—</li>"}</ul></div>
+    </div>
+  </article>`;
+}
+
+function pintarGaleria(){
+  document.getElementById("galeria").innerHTML = FOTOS.map((f,i)=>`
+    <button class="foto" data-i="${i}" aria-label="Ampliar: ${f.pie}">
+      <img src="${f.src}" alt="${f.pie}" loading="lazy">
+      <figcaption>${f.pie}</figcaption>
+    </button>`).join("");
+}
+
+/* Filtro de goleadores */
+const sel = document.getElementById("f-comp");
+sel.innerHTML = `<option value="todas">Todas</option>` +
+  COMPETICIONES.map(c=>`<option value="${c.id}">${c.nombre}</option>`).join("");
+sel.addEventListener("change", e => { const v=e.target.value; pintarGoleadores(v); pintarAsistencias(v); pintarRegistros(v); pintarPorteros(v); });
+
+/* Visor de fotos */
+const visor = document.getElementById("visor");
+const visorImg = document.getElementById("visor-img");
+document.addEventListener("click", e=>{
+  const b = e.target.closest(".foto");
+  if(b){
+    const f = FOTOS[+b.dataset.i];
+    visorImg.src = f.src; visorImg.alt = f.pie;
+    visor.classList.add("abierto");
+    document.getElementById("cerrar").focus();
+  } else if(e.target.closest("#visor")){
+    visor.classList.remove("abierto");
+  }
+});
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") visor.classList.remove("abierto"); });
+
+balance();
+pintarGoleadores("todas");
+pintarAsistencias("todas");
+pintarRegistros("todas");
+pintarPorteros("todas");
+pintarCompeticiones();
+pintarGaleria();
+</script>
+</body>
+</html>
