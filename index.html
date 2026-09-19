@@ -353,6 +353,31 @@ const COMPETICIONES = [
         goleadores: [],
         porteros: [ {n:"Guille", ge:1} ]
       }
+,
+      {
+        fecha: "19 sep 2026",
+        rival: "Montesión Juvenil B",
+        casa: true,
+        estado: "final",
+        gf: 10, gc: 2,
+        descanso: "5-2",
+        goles: [
+          {m:"1-0", n:"Sebas", a:"", nota:"tras robo"},
+          {tipo:"rival", m:"1-1", encaja:""},
+          {m:"2-1", n:"Sebas", a:"Marcos"},
+          {tipo:"rival", m:"2-2", encaja:""},
+          {m:"3-2", n:"Sebas", a:"", nota:"tras robo"},
+          {m:"4-2", n:"Sebas", a:"Alonso"},
+          {m:"5-2", n:"Álvaro", a:"Nico"},
+          {m:"6-2", n:"Alonso", a:"Sebas"},
+          {m:"7-2", n:"Sebas", a:"", nota:"tras robo"},
+          {m:"8-2", n:"Nico", a:"", nota:"tras robo"},
+          {m:"9-2", n:"Marcos", a:""},
+          {m:"10-2", n:"Kiko", a:"Alonso"}
+        ],
+        goleadores: [],
+        porteros: []
+      }
     ]
   },
   {
@@ -407,6 +432,19 @@ const COMPETICIONES = [
 /* Próximos partidos. Uno por competición o varios; se pintan en su bloque.
    Deja vacío lo que no sepas todavía. */
 const PROXIMOS = [
+  {
+    competicion: "amistosos",
+    rival: "Montesión Juvenil B",
+    jornada: "Amistoso",
+    fecha: "Sábado 19 de septiembre de 2026",
+    convocatoria: "",
+    hora: "",
+    campo: "",
+    clasificacion: null,
+    ultimos: [],
+    goleadores: [],
+    nota: "Derbi de casa contra el Juvenil B del club."
+  },
   {
     competicion: "clasificacion",
     rival: "Manacor C",
@@ -531,10 +569,12 @@ function pintarAsistencias(filtro){
 
 function pintarRegistros(filtro){
   const lista = todos.filter(m => filtro==="todas" || m.comp===filtro);
-  const faltas = new Map(), penas = new Map();
+  const faltas = new Map(), penas = new Map(), robos = new Map();
   lista.forEach(m => {
     (m.propios||[]).forEach(g => {
-      if((g.nota||"").toLowerCase().includes("falta")) faltas.set(nombre(g.n), (faltas.get(nombre(g.n))||0)+1);
+      const nota = (g.nota||"").toLowerCase();
+      if(nota.includes("falta")) faltas.set(nombre(g.n), (faltas.get(nombre(g.n))||0)+1);
+      if(nota.includes("robo")) robos.set(nombre(g.n), (robos.get(nombre(g.n))||0)+1);
     });
     (m.goles||[]).forEach(g => {
       if(g.tipo==="parada" && g.penalti) penas.set(nombre(g.n), (penas.get(nombre(g.n))||0)+1);
@@ -543,10 +583,12 @@ function pintarRegistros(filtro){
   const suma = m => [...m.values()].reduce((a,b)=>a+b,0);
   const detalle = m => [...m].sort((a,b)=>b[1]-a[1]).map(([n,v])=>`${n} ${v}`).join(" · ");
   const cont = document.getElementById("lista-registros");
-  if(!faltas.size && !penas.size){ cont.innerHTML = `<p class="vacio">Sin registros todavía.</p>`; return; }
+  if(!faltas.size && !penas.size && !robos.size){ cont.innerHTML = `<p class="vacio">Sin registros todavía.</p>`; return; }
   cont.innerHTML = `
     ${faltas.size?`<div class="portero"><div class="p-nombre">Goles de falta</div>
       <div class="p-dato">${suma(faltas)}</div><small>${detalle(faltas)}</small></div>`:""}
+    ${robos.size?`<div class="portero"><div class="p-nombre">Goles tras robo</div>
+      <div class="p-dato">${suma(robos)}</div><small>${detalle(robos)}</small></div>`:""}
     ${penas.size?`<div class="portero"><div class="p-nombre">Penaltis parados</div>
       <div class="p-dato">${suma(penas)}</div><small>${detalle(penas)}</small></div>`:""}`;
 }
