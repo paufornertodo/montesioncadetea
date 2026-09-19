@@ -134,6 +134,27 @@ select{
 .tally i{width:4px;height:13px;background:#9FBEFF;border-radius:1px;display:block}
 .encajados .tally i{background:var(--rojo)}
 
+/* ---------- Sumario ---------- */
+#sumario{padding-top:46px}
+.sum-datos{margin:0 0 20px;padding-top:16px;border-top:1px solid var(--linea);border-bottom:1px solid var(--linea);padding-bottom:16px}
+.sumario-texto p{margin:0 0 14px;font-size:1.02rem;line-height:1.6;color:rgba(239,241,245,.88);max-width:64ch}
+.sumario-texto p:first-child{font-size:1.12rem;color:#fff}
+.sumario-texto p:last-child{margin-bottom:0;color:var(--oro)}
+
+/* ---------- Bloque plegable ---------- */
+.plegable{border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+.plegable summary{
+  list-style:none;cursor:pointer;padding:14px 2px;font-size:.9rem;font-weight:500;
+  color:rgba(239,241,245,.72);display:flex;align-items:center;gap:9px
+}
+.plegable summary::-webkit-details-marker{display:none}
+.plegable summary::before{content:"+";font-family:"Bricolage Grotesque",sans-serif;font-weight:800;color:var(--oro);font-size:1.1rem;line-height:1}
+.plegable[open] summary::before{content:"–"}
+.plegable summary:hover{color:#fff}
+.plegable summary:focus-visible{outline:2px solid var(--oro);outline-offset:2px}
+.plegable-cuerpo{padding-bottom:8px}
+.plegable .formato{margin-top:6px}
+
 /* ---------- Formato de la competición ---------- */
 .formato{margin:0 0 22px;border-left:3px solid var(--oro);padding:2px 0 2px 15px}
 .formato div{display:grid;grid-template-columns:1fr;gap:1px;padding:5px 0}
@@ -226,6 +247,8 @@ footer{margin-top:56px;padding:24px 0 40px;border-top:1px solid var(--linea);fon
 
 <main class="wrap">
 
+  <section id="sumario"></section>
+
   <div id="competiciones"></div>
 
   <section id="estadisticas">
@@ -287,6 +310,7 @@ const COMPETICIONES = [
   {
     id: "amistosos",
     nombre: "Amistosos",
+    plegado: true,                 // true = llega plegado, se abre al tocarlo
     formato: [
       ["Fechas", "Septiembre de 2026"],
       ["Formato", "Partidos de pretemporada, sin clasificación."]
@@ -351,7 +375,7 @@ const COMPETICIONES = [
           {m:"1-7", n:"Lluc", a:"", nota:"de falta"}
         ],
         goleadores: [],
-        porteros: [ {n:"Guille", ge:1} ]
+        porteros: [ {n:"Guille", ge:1}, {n:"Nico", ge:0} ]
       }
 ,
       {
@@ -428,6 +452,23 @@ const COMPETICIONES = [
     partidos: []
   }
 ];
+
+/* Resumen que abre la web. Deja titulo en "" para ocultarlo entero. */
+const SUMARIO = {
+  titulo: "La pretemporada",
+  datos: [
+    ["4-0-0", "ganados-empatados-perdidos"],
+    ["42", "goles a favor"],
+    ["5", "goles en contra"],
+    ["10", "de José María"]
+  ],
+  texto: [
+    "Cuatro amistosos y cuatro victorias para abrir el curso: 12-1 al Son Oliva juvenil, 13-1 al Juan de Ávila senior regional, 7-1 al Son Ferrer y 10-2 al Juvenil B de casa. Cuarenta y dos goles a favor y cinco en contra, con el marcador siempre por delante en los cuatro descansos.",
+    "El patrón se repite: el equipo sale serio y remata en la segunda mitad. Quince goles antes del descanso por veintisiete después. Arriba, José María manda con diez y Sebas aparece cuando se aprieta, con ocho y una exhibición de cinco contra el Juvenil B, tres de ellos robando la cartera al contrario. Detrás, Marcos y Alonso reparten tres asistencias cada uno, y la portería se turna sin despeinarse entre Guillermo y Nico, que alterna los minutos bajo palos con el puesto de pívot y se ha ido a seis goles como jugador de campo.",
+    "Quedan cosas por ver. Jaime todavía no ha podido debutar por lesión y se le espera para cuando arranque lo serio. Lluc solo ha podido jugar uno de los cuatro y aun así se marchó con un gol de falta directa en la mochila.",
+    "Y en el banquillo, José empieza la temporada con mucha confianza, pese a que Chicho pida su dimisión cada dos por tres desde la grada."
+  ]
+};
 
 /* Próximos partidos. Uno por competición o varios; se pintan en su bloque.
    Deja vacío lo que no sepas todavía. */
@@ -666,6 +707,16 @@ function vivoHTML(m, comp){
   </div>`;
 }
 
+function pintarSumario(){
+  const s = typeof SUMARIO !== "undefined" ? SUMARIO : null;
+  const cont = document.getElementById("sumario");
+  if(!s || !s.titulo){ cont.remove(); return; }
+  cont.innerHTML = `
+    <div class="titulo"><h2>${s.titulo}</h2></div>
+    ${(s.datos||[]).length ? `<div class="pr-datos sum-datos">${s.datos.map(([v,l])=>`<div><b>${v}</b><small>${l}</small></div>`).join("")}</div>` : ""}
+    <div class="sumario-texto">${(s.texto||[]).map(p=>`<p>${p}</p>`).join("")}</div>`;
+}
+
 function pintarCompeticiones(){
   document.getElementById("competiciones").innerHTML = COMPETICIONES.map(c=>{
     const deEsta = todos.filter(m=>m.comp===c.id);
@@ -681,9 +732,16 @@ function pintarCompeticiones(){
       ? jugados.map((m,i)=>partidoHTML(m,i+1,c)).join("")
       : (vivos.length ? "" : `<p class="vacio">Sin partidos disputados todavía.</p>`);
     const cuenta = deEsta.length ? `${deEsta.length} ${deEsta.length===1?"partido":"partidos"}` : "";
+    const dentro = ficha + cuerpo;
+    const cuerpoFinal = c.plegado
+      ? `<details class="plegable">
+           <summary>${deEsta.length ? `Ver los ${deEsta.length} partidos` : "Ver el detalle"}</summary>
+           <div class="plegable-cuerpo">${dentro}</div>
+         </details>`
+      : dentro;
     return `<section id="${c.id}">
       <div class="titulo"><h2>${c.nombre}</h2><span class="cuenta">${cuenta}</span></div>
-      ${ficha}${previa}${cuerpo}
+      ${previa}${cuerpoFinal}
     </section>`;
   }).join("");
 }
@@ -729,6 +787,12 @@ function pintarGaleria(){
 const sel = document.getElementById("f-comp");
 sel.innerHTML = `<option value="todas">Todas</option>` +
   COMPETICIONES.map(c=>`<option value="${c.id}">${c.nombre}</option>`).join("");
+
+/* Por defecto se muestra la competición oficial más reciente que ya tenga partidos.
+   Mientras solo haya amistosos, se muestran todas. */
+const conPartidos = COMPETICIONES.filter(c => c.id !== "amistosos" && c.partidos.length);
+const PORDEFECTO = conPartidos.length ? conPartidos[conPartidos.length-1].id : "todas";
+sel.value = PORDEFECTO;
 sel.addEventListener("change", e => { const v=e.target.value; pintarGoleadores(v); pintarAsistencias(v); pintarRegistros(v); pintarPorteros(v); });
 
 /* Visor de fotos */
@@ -748,10 +812,11 @@ document.addEventListener("click", e=>{
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") visor.classList.remove("abierto"); });
 
 balance();
-pintarGoleadores("todas");
-pintarAsistencias("todas");
-pintarRegistros("todas");
-pintarPorteros("todas");
+pintarGoleadores(PORDEFECTO);
+pintarAsistencias(PORDEFECTO);
+pintarRegistros(PORDEFECTO);
+pintarPorteros(PORDEFECTO);
+pintarSumario();
 pintarCompeticiones();
 pintarGaleria();
 </script>
