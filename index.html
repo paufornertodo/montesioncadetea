@@ -158,7 +158,16 @@ select{
 .calendario{margin:0 0 26px}
 .calendario .sub{margin-top:0}
 .calendario ol{list-style:none;margin:0;padding:0}
-.calendario li{display:grid;grid-template-columns:34px 54px 1fr auto;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--linea);font-size:.92rem}
+.calendario li{border-bottom:1px solid var(--linea)}
+.cal-fila{display:grid;grid-template-columns:34px 54px 1fr auto;gap:10px;align-items:baseline;padding:9px 0;font-size:.92rem}
+summary.cal-fila{cursor:pointer;list-style:none}
+summary.cal-fila::-webkit-details-marker{display:none}
+summary.cal-fila:hover .cal-r{color:#fff}
+summary.cal-fila:focus-visible{outline:2px solid var(--oro);outline-offset:2px}
+.cal-det[open] > summary.cal-fila{border-bottom:1px dashed var(--linea)}
+.cal-cuerpo{padding:4px 0 16px}
+.cal-cuerpo .ht{text-align:left;margin:10px 0 0}
+.cal-cuerpo .detalle{border-top:0;margin-top:10px;padding-top:0}
 .cal-j{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;color:var(--oro)}
 .cal-f{color:rgba(239,241,245,.55);font-size:.82rem}
 .calendario li small{color:rgba(239,241,245,.5);font-size:.76rem}
@@ -539,15 +548,24 @@ function pintarSumario(){
 
 function calendarioHTML(c, jugados){
   if(!(c.calendario||[]).length) return "";
+  // el partido jugado más reciente del calendario llega desplegado
+  const ultimaJugada = c.calendario.filter(x => jugados.some(m=>m.jornada===x.j)).map(x=>x.j).pop();
   const filas = c.calendario.map(x=>{
-    if(x.descansa) return `<li class="cal-desc"><span class="cal-j">J${x.j}</span><span class="cal-f">${x.fecha}</span><span class="cal-r">Descansa</span><span></span></li>`;
+    if(x.descansa) return `<li><div class="cal-fila cal-desc"><span class="cal-j">J${x.j}</span><span class="cal-f">${x.fecha}</span><span class="cal-r">Descansa</span><span></span></div></li>`;
     const p = jugados.find(m => m.jornada === x.j);
-    const der = p
-      ? `<b class="${p.gf>p.gc?"gana":p.gf<p.gc?"pierde":""}">${p.casa?p.gf+"–"+p.gc:p.gc+"–"+p.gf}</b>`
-      : `<small>${x.casa?"Casa":"Fuera"}</small>`;
     const txt = x.casa ? `Montesión – ${x.rival}` : `${x.rival} – Montesión`;
     const extra = [x.hora, x.campo].filter(Boolean).join(" · ");
-    return `<li><span class="cal-j">J${x.j}</span><span class="cal-f">${x.fecha}</span><span class="cal-r">${txt}${extra?`<small class="cal-x">${extra}</small>`:""}</span>${der}</li>`;
+    const izq = `<span class="cal-j">J${x.j}</span><span class="cal-f">${x.fecha}</span>
+        <span class="cal-r">${txt}${extra?`<small class="cal-x">${extra}</small>`:""}</span>`;
+    if(!p) return `<li><div class="cal-fila">${izq}<small>${x.casa?"Casa":"Fuera"}</small></div></li>`;
+    const marcador = `<b class="${p.gf>p.gc?"gana":p.gf<p.gc?"pierde":""}">${p.casa?p.gf+"–"+p.gc:p.gc+"–"+p.gf}</b>`;
+    return `<li><details class="cal-det"${x.j===ultimaJugada?" open":""}>
+        <summary class="cal-fila">${izq}${marcador}</summary>
+        <div class="cal-cuerpo">
+          ${p.descanso?`<p class="ht">Al descanso, ${p.descanso.replace("-","–")}</p>`:""}
+          ${detalleHTML(p)}
+        </div>
+      </details></li>`;
   }).join("");
   return `<div class="calendario"><h3 class="sub">Calendario${c.grupo?" · "+c.grupo:""}</h3><ol>${filas}</ol></div>`;
 }
@@ -580,8 +598,8 @@ function pintarCompeticiones(){
       ? `<dl class="formato">${c.formato.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>`
       : "";
     const cuerpo = jugados.length
-      ? jugados.map((m,i)=>partidoHTML(m,jugados.length-i,c,i===0)).join("")
-      : (vivos.length ? "" : `<p class="vacio">Sin partidos disputados todavía.</p>`);
+      ? ((c.calendario||[]).length ? "" : jugados.map((m,i)=>partidoHTML(m,jugados.length-i,c,i===0)).join(""))
+      : (vivos.length || (c.calendario||[]).length ? "" : `<p class="vacio">Sin partidos disputados todavía.</p>`);
     const cuenta = deEsta.length ? `${deEsta.length} ${deEsta.length===1?"partido":"partidos"}` : "";
     const cal = calendarioHTML(c, deEsta);
     const cronica = (typeof SUMARIO !== "undefined" && SUMARIO.en === c.id) ? sumarioHTML(true) : "";
@@ -599,6 +617,17 @@ function pintarCompeticiones(){
   }).join("");
 }
 
+function detalleHTML(m){
+  const gol = (m.goles||[]).length
+    ? `<ol class="crono">${m.goles.map(g=>eventoHTML(g)).join("")}</ol>`
+    : `<ul class="marcas">${(m.goleadores||[]).map(x=>`<li>${tally(x.g)} ${nombre(x.n)} <b>${x.g}</b></li>`).join("") || "<li>—</li>"}</ul>`;
+  const por = (m.porteros||[]).map(x=>`<li>${tally(x.ge)} ${nombre(x.n)} <b>${x.ge}</b></li>`).join("");
+  return `<div class="detalle">
+      <div><h3>Goles del Montesión</h3>${gol}</div>
+      <div class="encajados"><h3>Portero</h3><ul class="marcas">${por || "<li>—</li>"}</ul></div>
+    </div>`;
+}
+
 function partidoHTML(m, num, comp, abierto){
   const gana = m.gf > m.gc, pierde = m.gf < m.gc;
   const izq = m.casa ? EQUIPO : m.rival;
@@ -610,10 +639,6 @@ function partidoHTML(m, num, comp, abierto){
   const etiqueta = m.jornada ? "Jornada " + m.jornada : comp.nombre + " " + num;
   const meta = [etiqueta, m.fecha, m.casa ? "En casa" : "Fuera", m.campo].filter(Boolean).join(" · ")
     + (estado ? ` <span class="vivo">${estado}</span>` : "");
-  const gol = (m.goles||[]).length
-    ? `<ol class="crono">${m.goles.map(g=>eventoHTML(g)).join("")}</ol>`
-    : `<ul class="marcas">${m.goleadores.map(x=>`<li>${tally(x.g)} ${nombre(x.n)} <b>${x.g}</b></li>`).join("") || "<li>—</li>"}</ul>`;
-  const por = (m.porteros||[]).map(x=>`<li>${tally(x.ge)} ${nombre(x.n)} <b>${x.ge}</b></li>`).join("");
   return `<article class="partido">
     <details class="p-det"${abierto?" open":""}>
       <summary>
@@ -626,10 +651,7 @@ function partidoHTML(m, num, comp, abierto){
         ${m.descanso?`<p class="ht">Al descanso, ${m.descanso.replace("-","–")}</p>`:""}
         <span class="p-abrir"></span>
       </summary>
-      <div class="detalle">
-        <div><h3>Goles del Montesión</h3>${gol}</div>
-        <div class="encajados"><h3>Portero</h3><ul class="marcas">${por || "<li>—</li>"}</ul></div>
-      </div>
+      ${detalleHTML(m)}
     </details>
   </article>`;
 }
