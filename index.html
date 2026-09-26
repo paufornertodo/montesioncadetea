@@ -131,6 +131,13 @@ select{
 .gana{color:#fff}
 .pierde{color:#FF9C93}
 .ht{text-align:center;margin:9px 0 0;font-size:.74rem;letter-spacing:.06em;color:rgba(239,241,245,.55)}
+.p-det > summary{list-style:none;cursor:pointer;position:relative}
+.p-det > summary::-webkit-details-marker{display:none}
+.p-det > summary:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+.p-abrir{display:block;margin-top:10px;font-size:.76rem;color:rgba(239,241,245,.55)}
+.p-abrir::before{content:"+ Ver los goles"}
+.p-det[open] .p-abrir::before{content:"– Ocultar los goles"}
+.p-det > summary:hover .p-abrir{color:var(--oro)}
 .detalle{margin-top:16px;display:grid;gap:16px;grid-template-columns:1fr;border-top:1px dashed var(--linea);padding-top:14px}
 @media(min-width:620px){.detalle{grid-template-columns:1.4fr 1fr}}
 .detalle h3{margin:0 0 8px;font-size:.78rem;font-weight:600;letter-spacing:.06em;color:rgba(239,241,245,.5)}
@@ -573,7 +580,7 @@ function pintarCompeticiones(){
       ? `<dl class="formato">${c.formato.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>`
       : "";
     const cuerpo = jugados.length
-      ? jugados.map((m,i)=>partidoHTML(m,jugados.length-i,c)).join("")
+      ? jugados.map((m,i)=>partidoHTML(m,jugados.length-i,c,i===0)).join("")
       : (vivos.length ? "" : `<p class="vacio">Sin partidos disputados todavía.</p>`);
     const cuenta = deEsta.length ? `${deEsta.length} ${deEsta.length===1?"partido":"partidos"}` : "";
     const cal = calendarioHTML(c, deEsta);
@@ -592,7 +599,7 @@ function pintarCompeticiones(){
   }).join("");
 }
 
-function partidoHTML(m, num, comp){
+function partidoHTML(m, num, comp, abierto){
   const gana = m.gf > m.gc, pierde = m.gf < m.gc;
   const izq = m.casa ? EQUIPO : m.rival;
   const der = m.casa ? m.rival : EQUIPO;
@@ -608,17 +615,22 @@ function partidoHTML(m, num, comp){
     : `<ul class="marcas">${m.goleadores.map(x=>`<li>${tally(x.g)} ${nombre(x.n)} <b>${x.g}</b></li>`).join("") || "<li>—</li>"}</ul>`;
   const por = (m.porteros||[]).map(x=>`<li>${tally(x.ge)} ${nombre(x.n)} <b>${x.ge}</b></li>`).join("");
   return `<article class="partido">
-    <p class="p-meta">${meta}</p>
-    <div class="marcador">
-      <div class="equipo ${m.casa?"mios":""}">${izq}</div>
-      <div class="cifra ${clase}">${gIzq}<span class="sep">–</span>${gDer}</div>
-      <div class="equipo der ${m.casa?"":"mios"}">${der}</div>
-    </div>
-    ${m.descanso?`<p class="ht">Al descanso, ${m.descanso.replace("-","–")}</p>`:""}
-    <div class="detalle">
-      <div><h3>Goles del Montesión</h3>${gol}</div>
-      <div class="encajados"><h3>Portero</h3><ul class="marcas">${por || "<li>—</li>"}</ul></div>
-    </div>
+    <details class="p-det"${abierto?" open":""}>
+      <summary>
+        <p class="p-meta">${meta}</p>
+        <div class="marcador">
+          <div class="equipo ${m.casa?"mios":""}">${izq}</div>
+          <div class="cifra ${clase}">${gIzq}<span class="sep">–</span>${gDer}</div>
+          <div class="equipo der ${m.casa?"":"mios"}">${der}</div>
+        </div>
+        ${m.descanso?`<p class="ht">Al descanso, ${m.descanso.replace("-","–")}</p>`:""}
+        <span class="p-abrir"></span>
+      </summary>
+      <div class="detalle">
+        <div><h3>Goles del Montesión</h3>${gol}</div>
+        <div class="encajados"><h3>Portero</h3><ul class="marcas">${por || "<li>—</li>"}</ul></div>
+      </div>
+    </details>
   </article>`;
 }
 
