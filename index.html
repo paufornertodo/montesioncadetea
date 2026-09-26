@@ -345,6 +345,21 @@ function balance(){
     ? `<span class="dg-t">Por competición</span>${desglose}` : "";
 }
 
+function eventoHTML(g){
+  if(g.tipo === "rival") return `<li class="ev-rival">
+      <span class="cr-m">${g.m||""}</span>
+      <span><b>Gol del rival</b>${g.encaja?`<small>encaja ${nombre(g.encaja)}</small>`:""}</span>
+    </li>`;
+  if(g.tipo === "parada") return `<li class="ev-parada">
+      <span class="cr-m">✋</span>
+      <span><b>${nombre(g.n)}</b> <i>${g.penalti?"penalti parado":"parada"}</i>${g.nota?`<small>${g.nota}</small>`:""}</span>
+    </li>`;
+  return `<li>
+      <span class="cr-m">${g.m||""}</span>
+      <span><b>${nombre(g.n)}</b>${g.nota?` <i>${g.nota}</i>`:""}${g.a?`<small>asistencia de ${nombre(g.a)}</small>`:""}</span>
+    </li>`;
+}
+
 function tally(n){
   const max = Math.min(n, 12);
   return `<span class="tally">${"<i></i>".repeat(max)}</span>`;
