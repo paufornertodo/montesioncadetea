@@ -333,3 +333,36 @@ const FOTOS = [
   {src:"foto-tunel.jpg",   pie:"Camino de la pista"}
 ];
 
+/* ==========================================================
+   TOP GOLEADORES DE LA COMPETICIÓN (datos oficiales FFIB)
+   nos:true = jugador del Montesión (sale en negrita)
+   d = dorsal. Déjalo fuera si no se sabe.
+   ========================================================== */
+const TOP_GOLEADORES = {
+  titulo: "Top 20 goleadores",
+  ambito: "Fase de clasificación cadete futsal, todos los grupos.",
+  cuantos: 20,
+  nota: "Datos de la FFIB tras la jornada 1. A partir del empate a goles, el orden es el de la federación.",
+  lista: [
+    {n:"Alonso Bestard",      eq:"Entreculturas Montesión A", gr:"Grupo F", g:6, nos:true, d:10},
+    {n:"Fausto García",       eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:5, d:14},
+    {n:"Mauri Ríos",          eq:"Son Ferrer Atlètic",        gr:"Grupo D", g:4, d:8},
+    {n:"Nicolás Forner",      eq:"Entreculturas Montesión A", gr:"Grupo F", g:4, nos:true, d:1},
+    {n:"Lluc Cardona",        eq:"Entreculturas Montesión A", gr:"Grupo F", g:4, nos:true, d:20},
+    {n:"Adrià Descastelli",   eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:4, d:5},
+    {n:"Daniel García",       eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:4, d:15},
+    {n:"Javier Rus",          eq:"Bar Gost-Sagrat Cor A",     gr:"Grupo A", g:4, d:7},
+    {n:"Omar Abazine",        eq:"Bar Gost-Sagrat Cor A",     gr:"Grupo A", g:4, d:14},
+    {n:"Lluc Cladera",        eq:"Bar Gost-Sagrat Cor B",     gr:"Grupo E", g:4, d:21},
+    {n:"Javier Jiménez",      eq:"Bar Gost-Sagrat Cor A",     gr:"Grupo A", g:3, d:21},
+    {n:"Alan Artigao",        eq:"Son Ferrer Atlètic",        gr:"Grupo D", g:3, d:20},
+    {n:"Oliver Pérez",        eq:"Bar Gost-Sagrat Cor A",     gr:"Grupo A", g:3, d:9},
+    {n:"Luis Magre",          eq:"Entreculturas Montesión A", gr:"Grupo F", g:3, nos:true, d:7},
+    {n:"Adrián Cabra",        eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:3, d:10},
+    {n:"Jaime Céspedes",      eq:"Bar Gost-Sagrat Cor A",     gr:"Grupo A", g:2, d:22},
+    {n:"Adrián Díaz",         eq:"Bar Gost-Sagrat Cor A",     gr:"Grupo A", g:2, d:24},
+    {n:"Toni Gayà",           eq:"Sant Joan C.E.",            gr:"Grupo F", g:2, d:5},
+    {n:"Pau Dorai",           eq:"Bar Gost-Sagrat Cor A",     gr:"Grupo A", g:2, d:8},
+    {n:"Anuar Bouizaouchen",  eq:"Sant Joan C.E.",            gr:"Grupo F", g:2, d:10}
+  ]
+};

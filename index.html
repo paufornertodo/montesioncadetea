@@ -174,6 +174,13 @@ select{
 .comollegar{display:inline-block;margin-top:7px;font-size:.78rem;color:var(--oro);text-decoration:none;border-bottom:1px solid rgba(246,186,28,.45);padding-bottom:1px}
 .comollegar:hover{color:#fff;border-bottom-color:#fff}
 
+.top-eq{text-align:left!important;color:rgba(239,241,245,.7);font-size:.85rem;padding-left:10px}
+.top-eq small{display:block;font-size:.68rem;color:rgba(239,241,245,.4);margin-top:1px}
+#top-liga .clasif table{min-width:340px}
+#top-liga .cl-eq{white-space:nowrap}
+#top-liga tr.nos .cl-eq{font-weight:700;color:#fff}
+#top-liga tr.nos .top-eq{color:rgba(255,255,255,.85)}
+
 /* ---------- Calendario ---------- */
 .calendario{margin:0 0 26px}
 .calendario .sub{margin-top:0}
@@ -326,6 +333,8 @@ footer{margin-top:56px;padding:24px 0 40px;border-top:1px solid var(--linea);fon
     <h3 class="sub">Portería</h3>
     <div class="porteros" id="lista-porteros"></div>
   </section>
+
+  <section id="top-liga"></section>
 
   <section id="galeria">
     <div class="titulo"><h2>Galería</h2></div>
@@ -744,6 +753,30 @@ function partidoHTML(m, num, comp, abierto){
   </article>`;
 }
 
+function pintarTop(){
+  const t = (typeof TOP_GOLEADORES !== "undefined") ? TOP_GOLEADORES : null;
+  const cont = document.getElementById("top-liga");
+  if(!t || !(t.lista||[]).length){ if(cont) cont.remove(); return; }
+  const filas = t.lista.slice(0, t.cuantos || 20).map((x,i)=>`<tr class="${x.nos?"nos":""}">
+      <td class="cl-pos">${i+1}</td>
+      <td class="cl-eq">${x.n}${x.d!=null?` <span class="dorsal">(${x.d})</span>`:""}</td>
+      <td class="top-eq">${x.eq}${x.gr?`<small>${x.gr}</small>`:""}</td>
+      <td class="cl-pts">${x.g}</td>
+    </tr>`).join("");
+  cont.innerHTML = `
+    <div class="titulo"><h2>${t.titulo}</h2></div>
+    ${t.ambito?`<p class="intro">${t.ambito}</p>`:""}
+    <div class="clasif">
+      <div class="clasif-scroll">
+        <table>
+          <thead><tr><th></th><th>Jugador</th><th class="top-eq">Equipo</th><th>Goles</th></tr></thead>
+          <tbody>${filas}</tbody>
+        </table>
+      </div>
+      ${t.nota?`<p class="clasif-nota">${t.nota}</p>`:""}
+    </div>`;
+}
+
 function pintarGaleria(){
   document.getElementById("galeria").innerHTML = FOTOS.map((f,i)=>`
     <button class="foto" data-i="${i}" aria-label="Ampliar: ${f.pie}">
@@ -789,6 +822,7 @@ pintarPortada();
 pintarMenu();
 pintarSumario();
 pintarCompeticiones();
+pintarTop();
 pintarGaleria();
 </script>
 </body>
