@@ -315,7 +315,11 @@ footer{margin-top:56px;padding:24px 0 40px;border-top:1px solid var(--linea);fon
   <img id="visor-img" src="" alt="">
 </div>
 
-<script src="datos.js"></script>
+<script>
+/* Carga los datos evitando la caché del navegador: así una actualización
+   se ve al instante, sin tener que recargar a fondo. */
+document.write('<scr'+'ipt src="datos.js?v=' + Date.now() + '"><\/scr'+'ipt>');
+</script>
 <script>
 /* ===================== A partir de aquí, la web se monta sola ========== */
 
