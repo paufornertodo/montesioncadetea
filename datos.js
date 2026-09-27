@@ -285,12 +285,14 @@ const PORTADA = [
   {src:"foto-huddle.jpg",    pos:"52% 32%", alt:"Charla del entrenador antes de saltar a la pista"},
   {src:"foto-aficion.jpg",     pos:"50% 38%", alt:"La afición del Montesión en la grada"},
   {src:"foto-equipo-portico.jpg",   pos:"50% 42%", alt:"Foto de equipo con el cuerpo técnico"},
+  {src:"foto-equipo-pista.jpg", pos:"50% 46%", alt:"El Cadete A posando en la portería"},
   {src:"foto-vestuario.jpg", pos:"50% 34%", alt:"Últimos minutos en el vestuario"},
   {src:"foto-tunel.jpg",     pos:"48% 40%", alt:"Camino de la pista"},
   {src:"foto-equipo-azul.jpg",   pos:"50% 40%", alt:"El Cadete A antes del partido"}
 ];
 
 const FOTOS = [
+  {src:"foto-equipo-pista.jpg", pie:"El Cadete A al completo, temporada 26/27"},
   {src:"foto-aficion.jpg",   pie:"La afición del Montesión en la grada"},
   {src:"foto-equipo-azul.jpg", pie:"El Cadete A antes del partido"},
   {src:"foto-equipo-portico.jpg", pie:"Foto de equipo con el cuerpo técnico"},
