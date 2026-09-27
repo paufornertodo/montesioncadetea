@@ -186,6 +186,15 @@ summary.cal-fila:hover .cal-r{color:#fff}
 summary.cal-fila:focus-visible{outline:2px solid var(--oro);outline-offset:2px}
 .cal-det[open] > summary.cal-fila{border-bottom:1px dashed var(--linea)}
 .cal-cuerpo{padding:4px 0 16px}
+.otros{margin-top:16px;padding-top:12px;border-top:1px dashed var(--linea)}
+.otros h4{margin:0 0 8px;font-size:.74rem;font-weight:600;letter-spacing:.06em;color:rgba(239,241,245,.5)}
+.otros ul{list-style:none;margin:0;padding:0}
+.otros li{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:baseline;padding:6px 0;font-size:.9rem}
+.ot-eq{color:rgba(239,241,245,.8)}
+.ot-eq.der{text-align:right}
+.otros b{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;white-space:nowrap}
+.otros .sep{color:rgba(255,255,255,.35);margin:0 3px;font-weight:400}
+.descansa-eq{margin:8px 0 0;font-size:.82rem;color:rgba(239,241,245,.5);font-style:italic}
 .cal-cuerpo .ht{text-align:left;margin:10px 0 0}
 .cal-cuerpo .detalle{border-top:0;margin-top:10px;padding-top:0}
 .cal-j{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;color:var(--oro)}
@@ -607,24 +616,41 @@ function tablaHTML(c){
   </div>`;
 }
 
+function otrosHTML(x){
+  const conRes = (x.otros||[]).filter(o => o.gl!=null && o.gv!=null);
+  if(!conRes.length) return "";   // sin resultados no hay nada que desplegar
+  const lista = conRes.map(o=>`<li>
+      <span class="ot-eq">${o.l}</span>
+      <b>${o.gl}<span class="sep">–</span>${o.gv}</b>
+      <span class="ot-eq der">${o.v}</span>
+    </li>`).join("");
+  return `<div class="otros">
+    <h4>Resto de la jornada</h4>
+    <ul>${lista}</ul>
+    ${x.descansaEq?`<p class="descansa-eq">Descansa ${x.descansaEq}</p>`:""}
+  </div>`;
+}
+
 function calendarioHTML(c, jugados){
   if(!(c.calendario||[]).length) return "";
-  // el partido jugado más reciente del calendario llega desplegado
+  // se despliega la jornada más reciente que ya haya jugado el equipo
   const ultimaJugada = c.calendario.filter(x => jugados.some(m=>m.jornada===x.j)).map(x=>x.j).pop();
   const filas = c.calendario.map(x=>{
-    if(x.descansa) return `<li><div class="cal-fila cal-desc"><span class="cal-j">J${x.j}</span><span class="cal-f">${x.fecha}</span><span class="cal-r">Descansa</span><span></span></div></li>`;
-    const p = jugados.find(m => m.jornada === x.j);
-    const txt = x.casa ? `Montesión – ${x.rival}` : `${x.rival} – Montesión`;
-    const extra = [x.hora, x.campo].filter(Boolean).join(" · ");
+    const p = x.descansa ? null : jugados.find(m => m.jornada === x.j);
+    const otros = otrosHTML(x);
+    const txt = x.descansa ? "Descansa" : (x.casa ? `Montesión – ${x.rival}` : `${x.rival} – Montesión`);
+    const extra = x.descansa ? "" : [x.hora, x.campo].filter(Boolean).join(" · ");
     const izq = `<span class="cal-j">J${x.j}</span><span class="cal-f">${x.fecha}</span>
         <span class="cal-r">${txt}${extra?`<small class="cal-x">${extra}</small>`:""}</span>`;
-    if(!p) return `<li><div class="cal-fila">${izq}<small>${x.casa?"Casa":"Fuera"}</small></div></li>`;
-    const marcador = `<b class="${p.gf>p.gc?"gana":p.gf<p.gc?"pierde":""}">${p.casa?p.gf+"–"+p.gc:p.gc+"–"+p.gf}</b>`;
+    const der = p
+      ? `<b class="${p.gf>p.gc?"gana":p.gf<p.gc?"pierde":""}">${p.casa?p.gf+"–"+p.gc:p.gc+"–"+p.gf}</b>`
+      : (x.descansa ? "<span></span>" : `<small>${x.casa?"Casa":"Fuera"}</small>`);
+    if(!p && !otros) return `<li><div class="cal-fila${x.descansa?" cal-desc":""}">${izq}${der}</div></li>`;
     return `<li><details class="cal-det"${x.j===ultimaJugada?" open":""}>
-        <summary class="cal-fila">${izq}${marcador}</summary>
+        <summary class="cal-fila${x.descansa?" cal-desc":""}">${izq}${der}</summary>
         <div class="cal-cuerpo">
-          ${p.descanso?`<p class="ht">Al descanso, ${p.descanso.replace("-","–")}</p>`:""}
-          ${detalleHTML(p)}
+          ${p ? `${p.descanso?`<p class="ht">Al descanso, ${p.descanso.replace("-","–")}</p>`:""}${detalleHTML(p)}` : ""}
+          ${otros}
         </div>
       </details></li>`;
   }).join("");
