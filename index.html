@@ -155,6 +155,25 @@ select{
 .sumario-texto p:first-child{font-size:1.12rem;color:#fff}
 .sumario-texto p:last-child{margin-bottom:0;color:var(--oro)}
 
+/* ---------- Clasificación ---------- */
+.clasif{margin:0 0 26px}
+.clasif .sub{margin-top:0}
+.clasif-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.clasif table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:430px}
+.clasif th{font-weight:500;font-size:.7rem;letter-spacing:.06em;color:rgba(239,241,245,.5);text-align:right;padding:0 0 8px;border-bottom:1px solid var(--linea)}
+.clasif th:nth-child(2){text-align:left}
+.clasif td{padding:9px 0;text-align:right;border-bottom:1px solid var(--linea);color:rgba(239,241,245,.75)}
+.clasif tr:last-child td{border-bottom:0}
+.cl-pos{width:26px;text-align:left;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;color:rgba(239,241,245,.4)}
+.cl-eq{text-align:left;padding-right:12px;color:var(--hueso)}
+.cl-pts{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;color:var(--hueso);padding-left:10px}
+.clasif tr.nos td{color:#fff}
+.clasif tr.nos .cl-eq{font-weight:600}
+.clasif tr.nos .cl-pos,.clasif tr.nos .cl-pts{color:var(--oro)}
+.clasif-nota{margin:10px 0 0;font-size:.78rem;color:rgba(239,241,245,.5)}
+.comollegar{display:inline-block;margin-top:7px;font-size:.78rem;color:var(--oro);text-decoration:none;border-bottom:1px solid rgba(246,186,28,.45);padding-bottom:1px}
+.comollegar:hover{color:#fff;border-bottom-color:#fff}
+
 /* ---------- Calendario ---------- */
 .calendario{margin:0 0 26px}
 .calendario .sub{margin-top:0}
@@ -512,7 +531,7 @@ function proximoHTML(p){
   const log = (p.convocatoria || p.hora || p.campo) ? `<div class="pr-datos">
       ${p.convocatoria?`<div><b>${p.convocatoria}</b><small>convocatoria</small></div>`:""}
       ${p.hora?`<div><b>${p.hora}</b><small>inicio</small></div>`:""}
-      ${p.campo?`<div class="ancho"><b>${p.campo}</b><small>pista</small></div>`:""}
+      ${p.campo?`<div class="ancho"><b>${p.campo}</b><small>pista</small>${p.mapa?`<a class="comollegar" href="${p.mapa}" target="_blank" rel="noopener">Cómo llegar</a>`:""}</div>`:""}
     </div>` : "";
   const ult = (p.ultimos||[]).length ? `<div class="pr-sub"><h4>Últimos resultados</h4>
       <ul>${p.ultimos.map(x=>`<li>${x}</li>`).join("")}</ul></div>` : "";
@@ -564,6 +583,28 @@ function pintarSumario(){
     <div class="titulo"><h2>${s.titulo}</h2></div>
     ${(s.datos||[]).length ? `<div class="pr-datos sum-datos">${s.datos.map(([v,l])=>`<div><b>${v}</b><small>${l}</small></div>`).join("")}</div>` : ""}
     <div class="sumario-texto">${(s.texto||[]).map(p=>`<p>${p}</p>`).join("")}</div>`;
+}
+
+function tablaHTML(c){
+  const t = c.tabla;
+  if(!(t||[]).length) return "";
+  const filas = t.map((e,i)=>`<tr class="${e.nos?"nos":""}">
+      <td class="cl-pos">${i+1}</td>
+      <td class="cl-eq">${e.eq}</td>
+      <td>${e.j}</td><td>${e.g}</td><td>${e.e}</td><td>${e.p}</td>
+      <td>${e.gf}</td><td>${e.gc}</td>
+      <td class="cl-pts">${e.pts}</td>
+    </tr>`).join("");
+  return `<div class="clasif">
+    <h3 class="sub">Clasificación${c.grupo?" · "+c.grupo:""}</h3>
+    <div class="clasif-scroll">
+      <table>
+        <thead><tr><th></th><th>Equipo</th><th>J</th><th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th><th>Pts</th></tr></thead>
+        <tbody>${filas}</tbody>
+      </table>
+    </div>
+    ${c.tablaNota?`<p class="clasif-nota">${c.tablaNota}</p>`:""}
+  </div>`;
 }
 
 function calendarioHTML(c, jugados){
@@ -622,6 +663,7 @@ function pintarCompeticiones(){
       : (vivos.length || (c.calendario||[]).length ? "" : `<p class="vacio">Sin partidos disputados todavía.</p>`);
     const cuenta = deEsta.length ? `${deEsta.length} ${deEsta.length===1?"partido":"partidos"}` : "";
     const cal = calendarioHTML(c, deEsta);
+    const tabla = tablaHTML(c);
     const cronica = (typeof SUMARIO !== "undefined" && SUMARIO.en === c.id) ? sumarioHTML(true) : "";
     const dentro = ficha + cronica + cuerpo;
     const cuerpoFinal = c.plegado
@@ -632,7 +674,7 @@ function pintarCompeticiones(){
       : dentro;
     return `<section id="${c.id}">
       <div class="titulo"><h2>${c.nombre}</h2><span class="cuenta">${cuenta}</span></div>
-      ${previa}${cal}${cuerpoFinal}
+      ${previa}${tabla}${cal}${cuerpoFinal}
     </section>`;
   }).join("");
 }

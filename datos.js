@@ -28,6 +28,15 @@ const COMPETICIONES = [
     id: "clasificacion",
     nombre: "Fase de clasificación",
     grupo: "Grupo F",
+    /* Clasificación oficial FFIB. nos:true marca al Montesión. */
+    tabla: [
+      {eq:"Entreculturas Montesión A", nos:true, j:1, g:1, e:0, p:0, gf:23, gc:0,  pts:3},
+      {eq:"Sant Joan C.E.",                     j:1, g:1, e:0, p:0, gf:6,  gc:1,  pts:3},
+      {eq:"C.F.S Joves d'Inca A",               j:0, g:0, e:0, p:0, gf:0,  gc:0,  pts:0},
+      {eq:"C.E. Sagrat Cor F.S. B",             j:1, g:0, e:0, p:1, gf:1,  gc:6,  pts:0},
+      {eq:"Manacor Fisiomedia FS C",            j:1, g:0, e:0, p:1, gf:0,  gc:23, pts:0}
+    ],
+    tablaNota: "Tras la jornada 1. El Joves d'Inca descansó.",
     /* Calendario oficial FFIB. casa:true = jugamos en casa. descansa:true = jornada libre.
        Cuando se juegue, el partido se añade abajo con jornada:N y el calendario muestra el resultado. */
     calendario: [
@@ -265,6 +274,7 @@ const PROXIMOS = [
     convocatoria: "",
     hora: "12:00 h",
     campo: "P.M. Son Juny · Fuera",
+    mapa: "https://www.google.com/maps/search/?api=1&query=Poliesportiu+Municipal+Son+Juny+Sant+Joan+Mallorca",
     clasificacion: { puesto:2, pj:1, pts:3, gf:6, gc:1 },
     ultimos: [
       "J1 · Sagrat Cor B 1 – 6 Sant Joan (fuera)"
