@@ -269,13 +269,14 @@ const PROXIMOS = [
     ultimos: [
       "J1 · Sagrat Cor B 1 – 6 Sant Joan (fuera)"
     ],
+    /* d = dorsal */
     goleadores: [
-      {n:"Anuar Bouizaouchen", g:2},
-      {n:"Toni Gayà", g:2},
-      {n:"Mateu Company", g:1},
-      {n:"Julià Fiol", g:1}
+      {n:"Anuar Bouizaouchen", d:10, g:2},
+      {n:"Toni Gayà", d:5, g:2},
+      {n:"Mateu Company", d:22, g:1},
+      {n:"Julià Fiol", d:3, g:1}
     ],
-    nota: "Único rival del grupo que también ganó en la jornada 1, y lo hizo fuera de casa. Reparte mucho el gol: cuatro goleadores distintos en un solo partido, sin un killer claro. Encajó uno, así que no es una defensa cerrada. Nosotros llegamos con 23-0; el aviso es que este sí compite."
+    nota: "Único rival del grupo que también ganó en la jornada 1, y lo hizo fuera de casa. Reparte el gol entre cuatro jugadores distintos, sin un killer claro. Ojo a dos: Anuar (10), que sale de inicio y marcó en las dos partes, y Toni Gayà (5), suplente que entró y firmó los dos últimos goles en los minutos 57 y 60. El Sagrat Cor aguantó el 0-3 hasta el descanso y se rompió al final. Encajaron uno, así que tampoco es una defensa cerrada."
   }
 ];
 

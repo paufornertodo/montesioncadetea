@@ -211,6 +211,7 @@ summary.cal-fila:focus-visible{outline:2px solid var(--oro);outline-offset:2px}
 .pr-sub{margin-top:16px;padding-top:14px;border-top:1px dashed var(--linea)}
 .pr-sub h4{margin:0 0 8px;font-size:.78rem;font-weight:600;letter-spacing:.06em;color:rgba(239,241,245,.55)}
 .pr-sub ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.92rem}
+.dorsal{color:rgba(239,241,245,.5);font-size:.85em}
 .pr-nota{margin:14px 0 0;font-size:.88rem;color:rgba(239,241,245,.6)}
 
 .vivo-card{border-top-color:var(--oro);background:rgba(255,255,255,.09)}
@@ -516,7 +517,7 @@ function proximoHTML(p){
   const ult = (p.ultimos||[]).length ? `<div class="pr-sub"><h4>Últimos resultados</h4>
       <ul>${p.ultimos.map(x=>`<li>${x}</li>`).join("")}</ul></div>` : "";
   const gol = (p.goleadores||[]).length ? `<div class="pr-sub"><h4>Sus goleadores</h4>
-      <ul>${p.goleadores.map(x=>`<li>${x.n} <b>${x.g}</b></li>`).join("")}</ul></div>` : "";
+      <ul>${p.goleadores.map(x=>`<li>${x.n}${x.d?` <span class="dorsal">(${x.d})</span>`:""} <b>${x.g}</b></li>`).join("")}</ul></div>` : "";
   const nota = p.nota ? `<p class="pr-nota">${p.nota}</p>` : "";
   return `<div class="proximo">
     <p class="etiqueta">PRÓXIMO PARTIDO</p>
