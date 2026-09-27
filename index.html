@@ -100,6 +100,7 @@ select{
 .rank li{display:grid;grid-template-columns:1.6rem 1fr auto;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--linea)}
 .puesto{font-size:.8rem;color:rgba(239,241,245,.4);text-align:right}
 .rank .nombre{font-weight:500}
+.temp{display:block;font-size:.72rem;font-weight:400;color:rgba(239,241,245,.5);margin-top:1px}
 .rank .barra{display:block;height:7px;margin-top:6px;background:var(--azul-claro);border-radius:2px;min-width:3px}
 .rank li:first-child .barra{background:var(--oro)}
 .rank li:first-child .nombre{color:var(--oro)}
@@ -381,6 +382,20 @@ function tally(n){
   return `<span class="tally">${"<i></i>".repeat(max)}</span>`;
 }
 
+/* Totales de toda la temporada, para mostrarlos junto al dato filtrado */
+const TEMPORADA = (() => {
+  const gol = new Map(), asi = new Map(), por = new Map();
+  todos.forEach(m => {
+    (m.goleadores||[]).forEach(x => gol.set(nombre(x.n), (gol.get(nombre(x.n))||0) + x.g));
+    (m.propios||[]).forEach(g => { if(g.a) asi.set(nombre(g.a), (asi.get(nombre(g.a))||0)+1); });
+    (m.porteros||[]).forEach(p => {
+      const a = por.get(nombre(p.n)) || {ge:0, pj:0};
+      a.ge += p.ge; a.pj += 1; por.set(nombre(p.n), a);
+    });
+  });
+  return {gol, asi, por};
+})();
+
 function pintarGoleadores(filtro){
   const lista = todos.filter(m => filtro==="todas" || m.comp===filtro);
   const mapa = new Map();
@@ -399,7 +414,7 @@ function pintarGoleadores(filtro){
     <li>
       <span class="puesto">${i+1}</span>
       <span>
-        <span class="nombre">${n}</span>
+        <span class="nombre">${n}${filtro!=="todas" && TEMPORADA.gol.get(n)!==g ? `<small class="temp">${TEMPORADA.gol.get(n)} en la temporada</small>` : ""}</span>
         <span class="barra" style="width:${Math.round(g/tope*100)}%"></span>
       </span>
       <span class="goles">${g}<small>${g===1?"gol":"goles"}</small></span>
@@ -421,7 +436,7 @@ function pintarAsistencias(filtro){
     <li>
       <span class="puesto">${i+1}</span>
       <span>
-        <span class="nombre">${n}</span>
+        <span class="nombre">${n}${filtro!=="todas" && TEMPORADA.asi.get(n)!==a ? `<small class="temp">${TEMPORADA.asi.get(n)} en la temporada</small>` : ""}</span>
         <span class="barra" style="width:${Math.round(a/tope*100)}%"></span>
       </span>
       <span class="goles">${a}<small>${a===1?"asist.":"asist."}</small></span>
@@ -475,7 +490,7 @@ function pintarPorteros(filtro){
     <div class="portero">
       <div class="p-nombre">${n}</div>
       <div class="p-dato">${d.ge}</div>
-      <small>${d.ge===1?"gol encajado":"goles encajados"} en ${d.pj} ${d.pj===1?"partido":"partidos"}${d.pp?` · ${d.pp} ${d.pp===1?"penalti parado":"penaltis parados"}`:""}</small>
+      <small>${d.ge===1?"gol encajado":"goles encajados"} en ${d.pj} ${d.pj===1?"partido":"partidos"}${d.pp?` · ${d.pp} ${d.pp===1?"penalti parado":"penaltis parados"}`:""}${(()=>{const t=TEMPORADA.por.get(n); return (filtro!=="todas" && t && t.pj!==d.pj) ? `<br>En la temporada: ${t.ge} en ${t.pj} partidos` : "";})()}</small>
     </div>`).join("");
 }
 
@@ -498,7 +513,7 @@ function proximoHTML(p){
       <ul>${p.ultimos.map(x=>`<li>${x}</li>`).join("")}</ul></div>` : "";
   const gol = (p.goleadores||[]).length ? `<div class="pr-sub"><h4>Sus goleadores</h4>
       <ul>${p.goleadores.map(x=>`<li>${x.n} <b>${x.g}</b></li>`).join("")}</ul></div>` : "";
-  const nota = (!hayTabla && !ult && !gol && p.nota) ? `<p class="pr-nota">${p.nota}</p>` : "";
+  const nota = p.nota ? `<p class="pr-nota">${p.nota}</p>` : "";
   return `<div class="proximo">
     <p class="etiqueta">PRÓXIMO PARTIDO</p>
     <h3>${p.rival || "Rival por confirmar"}</h3>
@@ -666,7 +681,7 @@ function pintarGaleria(){
 
 /* Filtro de goleadores */
 const sel = document.getElementById("f-comp");
-sel.innerHTML = `<option value="todas">Todas</option>` +
+sel.innerHTML = `<option value="todas">Toda la temporada</option>` +
   COMPETICIONES.map(c=>`<option value="${c.id}">${c.nombre}</option>`).join("");
 
 /* Por defecto se muestra la competición oficial más reciente que ya tenga partidos.

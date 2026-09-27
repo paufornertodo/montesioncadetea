@@ -32,7 +32,7 @@ const COMPETICIONES = [
        Cuando se juegue, el partido se añade abajo con jornada:N y el calendario muestra el resultado. */
     calendario: [
       {j:1,  fecha:"26 sep", rival:"Manacor Fisiomedia C", casa:true,  hora:"11:15", campo:"Pab. San Pedro Claver"},
-      {j:2,  fecha:"3 oct",  rival:"Sant Joan",            casa:false, hora:"",      campo:"P.M. Son Juny"},
+      {j:2,  fecha:"3 oct",  rival:"Sant Joan",            casa:false, hora:"12:00", campo:"P.M. Son Juny"},
       {j:3,  fecha:"10 oct", rival:"Joves d'Inca A",       casa:true},
       {j:4,  fecha:"17 oct", rival:"Sagrat Cor B",         casa:false},
       {j:5,  fecha:"24 oct", descansa:true},
@@ -263,12 +263,19 @@ const PROXIMOS = [
     jornada: "Jornada 2",
     fecha: "Sábado 3 de octubre de 2026",
     convocatoria: "",
-    hora: "",                      // la FFIB aún no la ha fijado
+    hora: "12:00 h",
     campo: "P.M. Son Juny · Fuera",
-    clasificacion: { puesto:null, pj:null, pts:null, gf:null, gc:null },
-    ultimos: [],
-    goleadores: [],
-    nota: "El Sant Joan debuta en la jornada 1 contra el Sagrat Cor B. En cuanto juegue, aquí irán su resultado, su puesto y sus goleadores."
+    clasificacion: { puesto:2, pj:1, pts:3, gf:6, gc:1 },
+    ultimos: [
+      "J1 · Sagrat Cor B 1 – 6 Sant Joan (fuera)"
+    ],
+    goleadores: [
+      {n:"Anuar Bouizaouchen", g:2},
+      {n:"Toni Gayà", g:2},
+      {n:"Mateu Company", g:1},
+      {n:"Julià Fiol", g:1}
+    ],
+    nota: "Único rival del grupo que también ganó en la jornada 1, y lo hizo fuera de casa. Reparte mucho el gol: cuatro goleadores distintos en un solo partido, sin un killer claro. Encajó uno, así que no es una defensa cerrada. Nosotros llegamos con 23-0; el aviso es que este sí compite."
   }
 ];
 
