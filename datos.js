@@ -30,13 +30,13 @@ const COMPETICIONES = [
     grupo: "Grupo F",
     /* Clasificación oficial FFIB. nos:true marca al Montesión. */
     tabla: [
-      {eq:"Entreculturas Montesión A", nos:true, j:1, g:1, e:0, p:0, gf:23, gc:0,  pts:3},
-      {eq:"Sant Joan C.E.",                     j:1, g:1, e:0, p:0, gf:6,  gc:1,  pts:3},
-      {eq:"C.F.S Joves d'Inca A",               j:0, g:0, e:0, p:0, gf:0,  gc:0,  pts:0},
-      {eq:"C.E. Sagrat Cor F.S. B",             j:1, g:0, e:0, p:1, gf:1,  gc:6,  pts:0},
-      {eq:"Manacor Fisiomedia FS C",            j:1, g:0, e:0, p:1, gf:0,  gc:23, pts:0}
+      {eq:"Entreculturas Montesión A", nos:true, j:2, g:2, e:0, p:0, gf:34, gc:0,  pts:6},
+      {eq:"C.F.S Joves d'Inca A",                j:1, g:1, e:0, p:0, gf:6,  gc:3,  pts:3},
+      {eq:"Sant Joan C.E.",                      j:2, g:1, e:0, p:1, gf:6,  gc:12, pts:3},
+      {eq:"C.E. Sagrat Cor F.S. B",              j:2, g:0, e:0, p:2, gf:4,  gc:12, pts:0},
+      {eq:"Manacor Fisiomedia FS C",             j:1, g:0, e:0, p:1, gf:0,  gc:23, pts:0}
     ],
-    tablaNota: "Tras la jornada 1. El Joves d'Inca descansó.",
+    tablaNota: "Tras la jornada 2. Esta jornada descansó el Manacor; la anterior, el Joves d'Inca.",
     /* Calendario oficial FFIB. casa:true = jugamos en casa. descansa:true = jornada libre.
        Cuando se juegue, el partido se añade abajo con jornada:N y el calendario muestra el resultado. */
     /* otros = el resto de partidos de la jornada (gl/gv = goles; null si no se ha jugado)
@@ -47,8 +47,8 @@ const COMPETICIONES = [
        otros:[{l:"Sagrat Cor B", v:"Sant Joan", gl:1, gv:6}]},
       {j:2,  fecha:"3 oct",  rival:"Sant Joan",            casa:false, hora:"12:00", campo:"P.M. Son Juny",
        descansaEq:"Manacor Fisiomedia C",
-       otros:[{l:"Joves d'Inca A", v:"Sagrat Cor B", gl:null, gv:null}]},
-      {j:3,  fecha:"10 oct", rival:"Joves d'Inca A",       casa:true,
+       otros:[{l:"Joves d'Inca A", v:"Sagrat Cor B", gl:6, gv:3}]},
+      {j:3,  fecha:"10 oct", rival:"Joves d'Inca A",       casa:true, hora:"11:30", campo:"Pab. San Pedro Claver",
        descansaEq:"Sagrat Cor B",
        otros:[{l:"Manacor Fisiomedia C", v:"Sant Joan", gl:null, gv:null}]},
       {j:4,  fecha:"17 oct", rival:"Sagrat Cor B",         casa:false,
@@ -115,6 +115,31 @@ const COMPETICIONES = [
         ],
         goleadores: [],
         porteros: [ {n:"Guille", ge:0}, {n:"Nico", ge:0} ]
+      },
+      {
+        jornada: 2,
+        fecha: "3 oct 2026",
+        rival: "Sant Joan C.E.",
+        casa: false,
+        estado: "final",
+        campo: "P.M. Son Juny",
+        gf: 11, gc: 0,
+        descanso: "0-5",
+        goles: [
+          {m:"0-1",  n:"Jose",   a:"Sebas"},
+          {m:"0-2",  n:"Luis",   a:"Jose"},
+          {m:"0-3",  n:"Alonso", a:"Jose"},
+          {m:"0-4",  n:"Álvaro", a:"Luis"},
+          {m:"0-5",  n:"Marcos", a:"Nico", nota:"asistencia desde la portería"},
+          {m:"0-6",  n:"Jose",   a:"Sebas", nota:"de saque de centro"},
+          {m:"0-7",  n:"Jose",   a:"Sebas"},
+          {tipo:"pp", m:"0-8", nota:"a tiro de José María"},
+          {m:"0-9",  n:"Sebas",  a:"Alonso"},
+          {m:"0-10", n:"Alonso", a:"Sebas"},
+          {m:"0-11", n:"Luis",   a:"Sebas"}
+        ],
+        goleadores: [],
+        porteros: [ {n:"Nico", ge:0}, {n:"Guille", ge:0} ]
       }
     ]
   },
@@ -290,25 +315,24 @@ const PROXIMOS = [
   },
   {
     competicion: "clasificacion",
-    rival: "Sant Joan C.E.",
-    jornada: "Jornada 2",
-    fecha: "Sábado 3 de octubre de 2026",
+    rival: "C.F.S Joves d'Inca A",
+    jornada: "Jornada 3",
+    fecha: "Sábado 10 de octubre de 2026",
     convocatoria: "",
-    hora: "12:00 h",
-    campo: "P.M. Son Juny · Fuera",
-    mapa: "https://www.google.com/maps/search/?api=1&query=Poliesportiu+Municipal+Son+Juny+Sant+Joan+Mallorca",
-    clasificacion: { puesto:2, pj:1, pts:3, gf:6, gc:1 },
+    hora: "11:30 h",
+    campo: "Pab. San Pedro Claver · En casa",
+    mapa: "https://www.google.com/maps/search/?api=1&query=Pabellon+San+Pedro+Claver+Montesion+Palma",
+    clasificacion: { puesto:2, pj:1, pts:3, gf:6, gc:3 },
     ultimos: [
-      "J1 · Sagrat Cor B 1 – 6 Sant Joan (fuera)"
+      "J2 · Joves d'Inca 6 – 3 Sagrat Cor B (en casa)",
+      "J1 · descansó"
     ],
-    /* d = dorsal */
     goleadores: [
-      {n:"Anuar Bouizaouchen", d:10, g:2},
-      {n:"Toni Gayà", d:5, g:2},
-      {n:"Mateu Company", d:22, g:1},
-      {n:"Julià Fiol", d:3, g:1}
+      {n:"Xavier Vallés",  d:9,  g:3},
+      {n:"Miguel Noguera", d:22, g:2},
+      {n:"Jorge Llizo",    d:23, g:1}
     ],
-    nota: "Único rival del grupo que también ganó en la jornada 1, y lo hizo fuera de casa. Reparte el gol entre cuatro jugadores distintos, sin un killer claro. Ojo a dos: Anuar (10), que sale de inicio y marcó en las dos partes, y Toni Gayà (5), suplente que entró y firmó los dos últimos goles en los minutos 57 y 60. El Sagrat Cor aguantó el 0-3 hasta el descanso y se rompió al final. Encajaron uno, así que tampoco es una defensa cerrada."
+    nota: "Llega segundo y con un solo partido jugado, el 6-3 al Sagrat Cor B en Inca. Lo llamativo es la plantilla: siete jugadores en el acta, cinco titulares y dos suplentes. Con ritmo alto se les pueden hacer largos los minutos finales. Arriba manda Xavier Vallés (9), tres de los seis goles, dos de ellos seguidos en el minuto 40. Encajaron tres, así que atrás se les llega."
   }
 ];
 
@@ -342,27 +366,27 @@ const TOP_GOLEADORES = {
   titulo: "Top 20 goleadores",
   ambito: "Fase de clasificación cadete futsal, todos los grupos.",
   cuantos: 20,
-  nota: "Datos de la FFIB tras la jornada 1. A partir del empate a goles, el orden es el de la federación.",
+  nota: "Datos de la FFIB tras la jornada 2. A partir del empate a goles, el orden es el de la federación.",
   lista: [
-    {n:"Alonso Bestard",      eq:"Entreculturas Montesión A", gr:"Grupo F", g:6, nos:true, d:10},
-    {n:"Fausto García",       eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:5, d:14},
+    {n:"Alonso Bestard",      eq:"Entreculturas Montesión A", gr:"Grupo F", g:9, d:10, nos:true},
+    {n:"Fausto García",       eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:8, d:14},
+    {n:"Adrià Descastelli",   eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:6, d:5},
+    {n:"Daniel García",       eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:6, d:15},
+    {n:"Adrián Cabra",        eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:5, d:10},
     {n:"Mauri Ríos",          eq:"Son Ferrer Atlètic",        gr:"Grupo D", g:4, d:8},
-    {n:"Nicolás Forner",      eq:"Entreculturas Montesión A", gr:"Grupo F", g:4, nos:true, d:1},
-    {n:"Lluc Cardona",        eq:"Entreculturas Montesión A", gr:"Grupo F", g:4, nos:true, d:20},
-    {n:"Adrià Descastelli",   eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:4, d:5},
-    {n:"Daniel García",       eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:4, d:15},
-    {n:"Javier Rus",          eq:"Bar Gost-Sagrat Cor A",     gr:"Grupo A", g:4, d:7},
     {n:"Omar Abazine",        eq:"Bar Gost-Sagrat Cor A",     gr:"Grupo A", g:4, d:14},
+    {n:"Javier Rus",          eq:"Bar Gost-Sagrat Cor A",     gr:"Grupo A", g:4, d:7},
+    {n:"Lluc Cardona",        eq:"Entreculturas Montesión A", gr:"Grupo F", g:4, d:20, nos:true},
+    {n:"Aitor Tejero",        eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:4, d:11},
     {n:"Lluc Cladera",        eq:"Bar Gost-Sagrat Cor B",     gr:"Grupo E", g:4, d:21},
-    {n:"Javier Jiménez",      eq:"Bar Gost-Sagrat Cor A",     gr:"Grupo A", g:3, d:21},
-    {n:"Alan Artigao",        eq:"Son Ferrer Atlètic",        gr:"Grupo D", g:3, d:20},
+    {n:"Nicolás Forner",      eq:"Entreculturas Montesión A", gr:"Grupo F", g:4, d:1,  nos:true},
+    {n:"Sebastián Calvo",     eq:"Entreculturas Montesión A", gr:"Grupo F", g:4, d:8,  nos:true},
+    {n:"Luis Magre",          eq:"Entreculturas Montesión A", gr:"Grupo F", g:4, d:7,  nos:true},
     {n:"Oliver Pérez",        eq:"Bar Gost-Sagrat Cor A",     gr:"Grupo A", g:3, d:9},
-    {n:"Luis Magre",          eq:"Entreculturas Montesión A", gr:"Grupo F", g:3, nos:true, d:7},
-    {n:"Adrián Cabra",        eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:3, d:10},
-    {n:"Jaime Céspedes",      eq:"Bar Gost-Sagrat Cor A",     gr:"Grupo A", g:2, d:22},
-    {n:"Adrián Díaz",         eq:"Bar Gost-Sagrat Cor A",     gr:"Grupo A", g:2, d:24},
-    {n:"Toni Gayà",           eq:"Sant Joan C.E.",            gr:"Grupo F", g:2, d:5},
-    {n:"Pau Dorai",           eq:"Bar Gost-Sagrat Cor A",     gr:"Grupo A", g:2, d:8},
-    {n:"Anuar Bouizaouchen",  eq:"Sant Joan C.E.",            gr:"Grupo F", g:2, d:10}
+    {n:"Alan Artigao",        eq:"Son Ferrer Atlètic",        gr:"Grupo D", g:3, d:20},
+    {n:"Xavier Vallés",       eq:"C.F.S Joves d'Inca A",      gr:"Grupo F", g:3, d:9},
+    {n:"Javier Jiménez",      eq:"Bar Gost-Sagrat Cor A",     gr:"Grupo A", g:3, d:21},
+    {n:"Sebastián Moreno",    eq:"Racing Club Andratx B",     gr:"Grupo C", g:3, d:5},
+    {n:"José María Bauzá",    eq:"Entreculturas Montesión A", gr:"Grupo F", g:3, d:2,  nos:true}
   ]
 };
