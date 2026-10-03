@@ -133,10 +133,10 @@ const COMPETICIONES = [
           {m:"0-5",  n:"Marcos", a:"Nico", nota:"asistencia desde la portería"},
           {m:"0-6",  n:"Jose",   a:"Sebas", nota:"de saque de centro"},
           {m:"0-7",  n:"Jose",   a:"Sebas"},
-          {tipo:"pp", m:"0-8", nota:"a tiro de José María"},
+          {m:"0-8",  n:"Alonso", a:""},
           {m:"0-9",  n:"Sebas",  a:"Alonso"},
           {m:"0-10", n:"Alonso", a:"Sebas"},
-          {m:"0-11", n:"Luis",   a:"Sebas"}
+          {m:"0-11", n:"Sebas",  a:""}
         ],
         goleadores: [],
         porteros: [ {n:"Nico", ge:0}, {n:"Guille", ge:0} ]
@@ -366,7 +366,7 @@ const TOP_GOLEADORES = {
   titulo: "Top 20 goleadores",
   ambito: "Fase de clasificación cadete futsal, todos los grupos.",
   cuantos: 20,
-  nota: "Datos de la FFIB tras la jornada 2. A partir del empate a goles, el orden es el de la federación. En la jornada 2 el acta arbitral atribuyó dos goles distinto de como se vieron desde la pista: el 0-8 fue en propia puerta y el 0-11 lo marcó Luis Magre. Nuestras estadísticas recogen la versión del banquillo.",
+  nota: "Datos de la FFIB tras la jornada 2. A partir del empate a goles, el orden es el de la federación.",
   lista: [
     {n:"Alonso Bestard",      eq:"Entreculturas Montesión A", gr:"Grupo F", g:9, d:10, nos:true},
     {n:"Fausto García",       eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:8, d:14},
