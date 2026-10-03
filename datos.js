@@ -366,7 +366,7 @@ const TOP_GOLEADORES = {
   titulo: "Top 20 goleadores",
   ambito: "Fase de clasificación cadete futsal, todos los grupos.",
   cuantos: 20,
-  nota: "Datos de la FFIB tras la jornada 2. A partir del empate a goles, el orden es el de la federación.",
+  nota: "Datos de la FFIB tras la jornada 2. A partir del empate a goles, el orden es el de la federación. En la jornada 2 el acta arbitral atribuyó dos goles distinto de como se vieron desde la pista: el 0-8 fue en propia puerta y el 0-11 lo marcó Luis Magre. Nuestras estadísticas recogen la versión del banquillo.",
   lista: [
     {n:"Alonso Bestard",      eq:"Entreculturas Montesión A", gr:"Grupo F", g:9, d:10, nos:true},
     {n:"Fausto García",       eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:8, d:14},
