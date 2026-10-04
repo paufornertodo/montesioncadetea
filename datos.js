@@ -390,3 +390,27 @@ const TOP_GOLEADORES = {
     {n:"José María Bauzá",    eq:"Entreculturas Montesión A", gr:"Grupo F", g:3, d:2,  nos:true}
   ]
 };
+
+/* ==========================================================
+   PANORAMA DE LA FASE — cómo va el resto de grupos
+   en = sección donde aparece. Deja titulo en "" para ocultarlo.
+   ========================================================== */
+const PANORAMA = {
+  en: "clasificacion",
+  titulo: "Cómo va el resto de la fase",
+  lideres: [
+    {g:"A", eq:"Racing Club Andratx A",      pj:2, gf:22, gc:3, pts:6},
+    {g:"B", eq:"F.S. Atlètic Mercadal",      pj:1, gf:7,  gc:1, pts:3},
+    {g:"C", eq:"S.E. Alcúdia Futsal B",      pj:1, gf:14, gc:2, pts:3},
+    {g:"D", eq:"S.E. Alcúdia Futsal A",      pj:2, gf:36, gc:1, pts:6},
+    {g:"E", eq:"Bar Gost-Sagrat Cor B",      pj:2, gf:12, gc:1, pts:6},
+    {g:"F", eq:"Entreculturas Montesión A",  pj:2, gf:34, gc:0, pts:6, nos:true}
+  ],
+  texto: [
+    "La fase son 31 equipos en seis grupos y solo diez pasan a División de Honor: los seis primeros más los cuatro mejores segundos. Después de dos jornadas hay cuatro equipos con pleno de victorias, y dos de ellos van muy por delante del resto.",
+    "<b>S.E. Alcúdia Futsal A (grupo D)</b> es el rival de referencia. Lleva 36 goles a favor y uno en contra, cifras casi calcadas a las nuestras, y es el equipo con más representación en el top de goleadores: cuatro jugadores entre los quince primeros, con Fausto García (14) en 8 goles, solo por detrás de Alonso. Si los dos hacemos los deberes, el cruce llegará en la segunda fase.",
+    "Detrás aparecen tres nombres que conviene fichar. <b>Racing Club Andratx A (grupo A)</b> firma 22-3 en dos partidos. <b>Bar Gost-Sagrat Cor B (grupo E)</b> es el otro pleno, con 12-1 y Lluc Cladera (21) ya en el top 20. Y <b>Son Ferrer Atlètic</b>, segundo del grupo D por detrás del Alcúdia, ganó 15-0 su estreno: como mejor segundo tiene plaza casi asegurada pese a compartir grupo con el líder.",
+    "Caso aparte es el <b>Bar Gost-Sagrat Cor A (grupo A)</b>: 23 goles a favor en dos jornadas, el ataque más repartido de toda la fase con cinco jugadores en el top 20, pero ya ha perdido un partido. Mucha pólvora y poco colchón.",
+    "Y un apunte de casa: el club tiene cuatro equipos en esta fase. Además de nosotros en el F, el Colegio Montesión A va tercero en el B, el Montesión B lidera por detrás del Sagrat Cor en el E, y el Colegio Montesión B cierra el grupo A."
+  ]
+};

@@ -181,6 +181,13 @@ select{
 #top-liga tr.nos .cl-eq{font-weight:700;color:#fff}
 #top-liga tr.nos .top-eq{color:rgba(255,255,255,.85)}
 
+.panorama{margin:0 0 26px}
+.panorama .clasif{margin-bottom:4px}
+.panorama table{min-width:320px}
+.pan-texto p{font-size:.95rem;margin-bottom:12px}
+.pan-texto p:first-child{font-size:.95rem;color:rgba(239,241,245,.88)}
+.pan-texto p:last-child{color:var(--oro)}
+
 /* ---------- Calendario ---------- */
 .calendario{margin:0 0 26px}
 .calendario .sub{margin-top:0}
@@ -608,6 +615,31 @@ function pintarSumario(){
     <div class="sumario-texto">${(s.texto||[]).map(p=>`<p>${p}</p>`).join("")}</div>`;
 }
 
+function panoramaHTML(c){
+  const p = (typeof PANORAMA !== "undefined") ? PANORAMA : null;
+  if(!p || p.en !== c.id) return "";
+  const filas = (p.lideres||[]).map(x=>`<tr class="${x.nos?"nos":""}">
+      <td class="cl-pos">${x.g}</td>
+      <td class="cl-eq">${x.eq}</td>
+      <td>${x.pj}</td><td>${x.gf}</td><td>${x.gc}</td>
+      <td class="cl-pts">${x.pts}</td>
+    </tr>`).join("");
+  return `<details class="plegable panorama">
+    <summary>${p.titulo}</summary>
+    <div class="plegable-cuerpo">
+      <div class="clasif">
+        <div class="clasif-scroll">
+          <table>
+            <thead><tr><th></th><th>Líder del grupo</th><th>J</th><th>GF</th><th>GC</th><th>Pts</th></tr></thead>
+            <tbody>${filas}</tbody>
+          </table>
+        </div>
+      </div>
+      <div class="sumario-texto pan-texto">${(p.texto||[]).map(t=>`<p>${t}</p>`).join("")}</div>
+    </div>
+  </details>`;
+}
+
 function tablaHTML(c){
   const t = c.tabla;
   if(!(t||[]).length) return "";
@@ -704,6 +736,7 @@ function pintarCompeticiones(){
     const cuenta = deEsta.length ? `${deEsta.length} ${deEsta.length===1?"partido":"partidos"}` : "";
     const cal = calendarioHTML(c, deEsta);
     const tabla = tablaHTML(c);
+    const pano = panoramaHTML(c);
     const cronica = (typeof SUMARIO !== "undefined" && SUMARIO.en === c.id) ? sumarioHTML(true) : "";
     const dentro = ficha + cronica + cuerpo;
     const cuerpoFinal = c.plegado
@@ -714,7 +747,7 @@ function pintarCompeticiones(){
       : dentro;
     return `<section id="${c.id}">
       <div class="titulo"><h2>${c.nombre}</h2><span class="cuenta">${cuenta}</span></div>
-      ${previa}${tabla}${cal}${cuerpoFinal}
+      ${previa}${pano}${tabla}${cal}${cuerpoFinal}
     </section>`;
   }).join("");
 }
