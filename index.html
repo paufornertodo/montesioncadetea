@@ -187,6 +187,19 @@ select{
 .pan-texto p{font-size:.95rem;margin-bottom:12px}
 .pan-texto p:first-child{font-size:.95rem;color:rgba(239,241,245,.88)}
 .pan-texto p:last-child{color:var(--oro)}
+.pan-pos{width:24px;text-align:left!important;font-size:.76rem;color:rgba(239,241,245,.45)}
+.panorama tr.pasa1 .cl-eq,.panorama tr.pasa1 .cl-pts{color:var(--oro)}
+.panorama tr.pasa1 .cl-pos{color:var(--oro)}
+.panorama tr.pasa2 .cl-eq,.panorama tr.pasa2 .cl-pts{color:#6FE3B8}
+.panorama tr.fuera .cl-eq{color:rgba(239,241,245,.5)}
+.panorama tr.fuera td{color:rgba(239,241,245,.4)}
+.panorama tr.nos .cl-eq{font-weight:700}
+.leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;margin:12px 0 0;font-size:.74rem}
+.lg{display:flex;align-items:center;gap:6px;color:rgba(239,241,245,.6)}
+.lg::before{content:"";width:9px;height:9px;border-radius:2px;display:inline-block}
+.lg1::before{background:var(--oro)}
+.lg2::before{background:#6FE3B8}
+.lg0::before{background:rgba(239,241,245,.35)}
 
 /* ---------- Calendario ---------- */
 .calendario{margin:0 0 26px}
@@ -618,22 +631,37 @@ function pintarSumario(){
 function panoramaHTML(c){
   const p = (typeof PANORAMA !== "undefined") ? PANORAMA : null;
   if(!p || p.en !== c.id) return "";
-  const filas = (p.lideres||[]).map(x=>`<tr class="${x.nos?"nos":""}">
-      <td class="cl-pos">${x.g}</td>
+  const eq = (p.equipos||[]).slice();
+  // Los cuatro mejores segundos: puntos, luego diferencia de goles, luego goles a favor
+  const segundos = eq.filter(x=>x.pos===2).sort((a,b)=>
+     b.pts-a.pts || (b.gf-b.gc)-(a.gf-a.gc) || b.gf-a.gf);
+  const pasan = new Set(segundos.slice(0, p.mejoresSegundos || 4).map(x=>x.eq));
+  const filas = eq.map(x=>{
+    const clase = x.pos===1 ? "pasa1" : (pasan.has(x.eq) ? "pasa2" : "fuera");
+    return `<tr class="${clase}${x.nos?" nos":""}">
+      <td class="cl-pos">${x.pos===1?x.g:""}</td>
+      <td class="pan-pos">${x.pos}º</td>
       <td class="cl-eq">${x.eq}</td>
       <td>${x.pj}</td><td>${x.gf}</td><td>${x.gc}</td>
       <td class="cl-pts">${x.pts}</td>
-    </tr>`).join("");
+    </tr>`;
+  }).join("");
   return `<details class="plegable panorama">
     <summary>${p.titulo}</summary>
     <div class="plegable-cuerpo">
       <div class="clasif">
         <div class="clasif-scroll">
           <table>
-            <thead><tr><th></th><th>Líder del grupo</th><th>J</th><th>GF</th><th>GC</th><th>Pts</th></tr></thead>
+            <thead><tr><th></th><th></th><th>Equipo</th><th>J</th><th>GF</th><th>GC</th><th>Pts</th></tr></thead>
             <tbody>${filas}</tbody>
           </table>
         </div>
+        <p class="leyenda">
+          <span class="lg lg1">Primeros de grupo</span>
+          <span class="lg lg2">Mejores segundos</span>
+          <span class="lg lg0">De momento fuera</span>
+        </p>
+        ${p.notaTabla?`<p class="clasif-nota">${p.notaTabla}</p>`:""}
       </div>
       <div class="sumario-texto pan-texto">${(p.texto||[]).map(t=>`<p>${t}</p>`).join("")}</div>
     </div>
