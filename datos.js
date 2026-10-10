@@ -30,13 +30,13 @@ const COMPETICIONES = [
     grupo: "Grupo F",
     /* Clasificación oficial FFIB. nos:true marca al Montesión. */
     tabla: [
-      {eq:"Entreculturas Montesión A", nos:true, j:2, g:2, e:0, p:0, gf:34, gc:0,  pts:6},
-      {eq:"C.F.S Joves d'Inca A",                j:1, g:1, e:0, p:0, gf:6,  gc:3,  pts:3},
+      {eq:"Entreculturas Montesión A", nos:true, j:3, g:3, e:0, p:0, gf:49, gc:2,  pts:9},
       {eq:"Sant Joan C.E.",                      j:2, g:1, e:0, p:1, gf:6,  gc:12, pts:3},
+      {eq:"C.F.S Joves d'Inca A",                j:2, g:1, e:0, p:1, gf:8,  gc:18, pts:3},
       {eq:"C.E. Sagrat Cor F.S. B",              j:2, g:0, e:0, p:2, gf:4,  gc:12, pts:0},
       {eq:"Manacor Fisiomedia FS C",             j:1, g:0, e:0, p:1, gf:0,  gc:23, pts:0}
     ],
-    tablaNota: "Tras la jornada 2. Esta jornada descansó el Manacor; la anterior, el Joves d'Inca.",
+    tablaNota: "Jornada 3 a falta del Manacor Fisiomedia C – Sant Joan. Esta jornada descansa el Sagrat Cor B.",
     /* Calendario oficial FFIB. casa:true = jugamos en casa. descansa:true = jornada libre.
        Cuando se juegue, el partido se añade abajo con jornada:N y el calendario muestra el resultado. */
     /* otros = el resto de partidos de la jornada (gl/gv = goles; null si no se ha jugado)
@@ -140,6 +140,36 @@ const COMPETICIONES = [
         ],
         goleadores: [],
         porteros: [ {n:"Nico", ge:0}, {n:"Guille", ge:0} ]
+      },
+      {
+        jornada: 3,
+        fecha: "10 oct 2026",
+        rival: "C.F.S Joves d'Inca A",
+        casa: true,
+        estado: "final",
+        campo: "Pab. San Pedro Claver",
+        gf: 15, gc: 2,
+        goles: [
+          {m:"1-0",  n:"Sebas",  a:""},
+          {tipo:"rival", m:"1-1", encaja:"Guille"},
+          {m:"2-1",  n:"Nico",   a:"Alonso"},
+          {m:"3-1",  n:"Álvaro", a:"Nico"},
+          {m:"4-1",  n:"Luis",   a:"Jaime"},
+          {m:"5-1",  n:"Sebas",  a:"Álvaro"},
+          {m:"6-1",  n:"Sebas",  a:"Nico"},
+          {m:"7-1",  n:"Nico",   a:"Alonso"},
+          {m:"8-1",  n:"Sebas",  a:"", nota:"al rechace"},
+          {m:"9-1",  n:"Marcos", a:"Álvaro"},
+          {tipo:"rival", m:"9-2", encaja:"Guille"},
+          {m:"10-2", n:"Sebas",  a:"Alonso", nota:"tras jugadón de Alonso"},
+          {m:"11-2", n:"Alonso", a:"Álvaro"},
+          {m:"12-2", n:"Sebas",  a:"Álvaro"},
+          {m:"13-2", n:"Luis",   a:"", nota:"escuadrazo al rechace"},
+          {m:"14-2", n:"Alonso", a:"", nota:"de churro"},
+          {m:"15-2", n:"Sebas",  a:""}
+        ],
+        goleadores: [],
+        porteros: [ {n:"Guille", ge:2} ]
       }
     ]
   },
