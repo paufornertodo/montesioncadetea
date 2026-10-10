@@ -131,6 +131,7 @@ select{
 .cifra .sep{color:rgba(255,255,255,.38);margin:0 4px;font-weight:400}
 .gana{color:#fff}
 .pierde{color:#FF9C93}
+.p-nota{margin:12px 0 0;font-size:.88rem;color:rgba(239,241,245,.72);border-left:2px solid var(--oro);padding-left:10px}
 .ht{text-align:center;margin:9px 0 0;font-size:.74rem;letter-spacing:.06em;color:rgba(239,241,245,.55)}
 .p-det > summary{list-style:none;cursor:pointer;position:relative}
 .p-det > summary::-webkit-details-marker{display:none}
@@ -785,7 +786,8 @@ function detalleHTML(m){
     ? `<ol class="crono">${m.goles.map(g=>eventoHTML(g)).join("")}</ol>`
     : `<ul class="marcas">${(m.goleadores||[]).map(x=>`<li>${tally(x.g)} ${nombre(x.n)} <b>${x.g}</b></li>`).join("") || "<li>—</li>"}</ul>`;
   const por = (m.porteros||[]).map(x=>`<li>${tally(x.ge)} ${nombre(x.n)} <b>${x.ge}</b></li>`).join("");
-  return `<div class="detalle">
+  return `${m.nota?`<p class="p-nota">${m.nota}</p>`:""}
+    <div class="detalle">
       <div><h3>Goles del Montesión</h3>${gol}</div>
       <div class="encajados"><h3>Portero</h3><ul class="marcas">${por || "<li>—</li>"}</ul></div>
     </div>`;

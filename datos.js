@@ -149,7 +149,8 @@ const COMPETICIONES = [
         estado: "final",
         campo: "Pab. San Pedro Claver",
         gf: 15, gc: 2,
-        descanso: "",                 // pendiente de confirmar
+        descanso: "7-1",
+        nota: "Con las bajas de José María, Lluc y Kiko, Nico jugó todo el partido como jugador de campo y Guillermo cubrió la portería de principio a fin.",
         /* Cronología tomada del acta oficial; faltan las asistencias */
         goles: [
           {m:"1-0",  n:"Sebas"},
@@ -171,7 +172,7 @@ const COMPETICIONES = [
           {m:"15-2", n:"Sebas"}
         ],
         goleadores: [],
-        porteros: []                  // pendiente: quién estuvo bajo palos
+        porteros: [ {n:"Guille", ge:2} ]
       }
     ]
   },
