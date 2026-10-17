@@ -30,13 +30,13 @@ const COMPETICIONES = [
     grupo: "Grupo F",
     /* Clasificación oficial FFIB. nos:true marca al Montesión. */
     tabla: [
-      {eq:"Entreculturas Montesión A", nos:true, j:3, g:3, e:0, p:0, gf:49, gc:2,  pts:9},
+      {eq:"Entreculturas Montesión A", nos:true, j:4, g:4, e:0, p:0, gf:79, gc:2,  pts:12},
       {eq:"Sant Joan C.E.",                      j:2, g:1, e:0, p:1, gf:6,  gc:12, pts:3},
       {eq:"C.F.S Joves d'Inca A",                j:2, g:1, e:0, p:1, gf:8,  gc:18, pts:3},
-      {eq:"C.E. Sagrat Cor F.S. B",              j:2, g:0, e:0, p:2, gf:4,  gc:12, pts:0},
+      {eq:"C.E. Sagrat Cor F.S. B",              j:3, g:0, e:0, p:3, gf:4,  gc:42, pts:0},
       {eq:"Manacor Fisiomedia FS C",             j:1, g:0, e:0, p:1, gf:0,  gc:23, pts:0}
     ],
-    tablaNota: "Tras la jornada 3. Falta por disputarse el Manacor C – Sant Joan de esta misma jornada.",
+    tablaNota: "Tras nuestro partido de la jornada 4. Faltan el Joves d'Inca A – Manacor C de esta jornada y el Manacor C – Sant Joan aplazado de la 3.",
     /* Calendario oficial FFIB. casa:true = jugamos en casa. descansa:true = jornada libre.
        Cuando se juegue, el partido se añade abajo con jornada:N y el calendario muestra el resultado. */
     /* otros = el resto de partidos de la jornada (gl/gv = goles; null si no se ha jugado)
@@ -172,6 +172,50 @@ const COMPETICIONES = [
         ],
         goleadores: [],
         porteros: [ {n:"Guille", ge:2} ]
+      },
+      {
+        jornada: 4,
+        fecha: "17 oct 2026",
+        rival: "C.E. Sagrat Cor F.S. B",
+        casa: false,
+        estado: "final",
+        campo: "P.M. Secar de la Real",
+        gf: 30, gc: 0,
+        nota: "Guillermo, toda la tarde bajo palos, dejó la portería a cero y aún tuvo tiempo de dar una asistencia. Jaime marcó su primer gol con el Cadete A.",
+        goles: [
+          {m:"0-1",  n:"Nico"},
+          {m:"0-2",  n:"Nico",   a:"Sebas"},
+          {m:"0-3",  n:"Nico",   a:"Marcos"},
+          {m:"0-4",  n:"Álvaro", a:"Alonso"},
+          {m:"0-5",  n:"Jaime",  a:"Luis"},
+          {m:"0-6",  n:"Alonso", a:"Jaime"},
+          {m:"0-7",  n:"Alonso"},
+          {m:"0-8",  n:"Sebas"},
+          {m:"0-9",  n:"Luis",   a:"Sebas"},
+          {m:"0-10", n:"Nico",   a:"Sebas"},
+          {m:"0-11", n:"Álvaro", a:"Nico"},
+          {m:"0-12", n:"Nico",   a:"Álvaro"},
+          {m:"0-13", n:"Nico",   a:"Álvaro"},
+          {m:"0-14", n:"Alonso"},
+          {m:"0-15", n:"Alonso"},
+          {m:"0-16", n:"Alonso"},
+          {m:"0-17", n:"Sebas",  a:"Guille", nota:"asistencia desde la portería"},
+          {m:"0-18", n:"Nico",   a:"Jaime"},
+          {m:"0-19", n:"Marcos", a:"Luis"},
+          {m:"0-20", n:"Luis"},
+          {m:"0-21", n:"Marcos", a:"Sebas"},
+          {m:"0-22", n:"Luis",   a:"Alonso"},
+          {m:"0-23", n:"Luis",   a:"Alonso"},
+          {m:"0-24", n:"Alonso", a:"Sebas"},
+          {m:"0-25", n:"Alonso"},
+          {m:"0-26", n:"Álvaro", a:"Nico"},
+          {m:"0-27", n:"Marcos", a:"Nico"},
+          {m:"0-28", n:"Álvaro"},
+          {m:"0-29", n:"Sebas"},
+          {m:"0-30", n:"Alonso", a:"Álvaro"}
+        ],
+        goleadores: [],
+        porteros: [ {n:"Guille", ge:0} ]
       }
     ]
   },
@@ -347,22 +391,18 @@ const PROXIMOS = [
   },
   {
     competicion: "clasificacion",
-    rival: "C.E. Sagrat Cor F.S. B",
-    jornada: "Jornada 4",
-    fecha: "Sábado 17 de octubre de 2026",
+    rival: "Manacor Fisiomedia FS C",
+    jornada: "Jornada 6",
+    fecha: "Sábado 31 de octubre de 2026",
     convocatoria: "",
-    hora: "17:45 h",
-    campo: "P.M. Secar de la Real (David Muntaner) · Fuera",
-    mapa: "https://www.google.com/maps/search/?api=1&query=Poliesportiu+Secar+de+la+Real+David+Muntaner+Palma",
-    clasificacion: { puesto:4, pj:2, pts:0, gf:4, gc:12 },
+    hora: "",
+    campo: "Manacor · Fuera",
+    clasificacion: { puesto:5, pj:1, pts:0, gf:0, gc:23 },
     ultimos: [
-      "J2 · Joves d'Inca 6 – 3 Sagrat Cor B (fuera)",
-      "J1 · Sagrat Cor B 1 – 6 Sant Joan (casa)"
+      "J1 · Montesión 23 – 0 Manacor C (fuera)"
     ],
-    goleadores: [
-      {n:"Felip Cerdà", d:10, g:1}
-    ],
-    nota: "Colista del grupo con dos derrotas y sin haber ganado todavía. Encaja seis por partido y marca poco: cuatro goles en dos jornadas, repartidos y sin ningún goleador destacado. Es el rival que peor llega de los cuatro del grupo, pero se juega fuera y en parquet, una pista distinta a la nuestra."
+    goleadores: [],
+    nota: "El 24 de octubre (jornada 5) nos toca descansar. La vuelta empieza en Manacor contra el equipo al que ganamos 23-0 en el estreno. Hasta ahora solo ha jugado ese partido: tiene pendiente el aplazado contra Sant Joan y esta jornada visita al Joves d'Inca. Hora y pista, por confirmar."
   }
 ];
 
