@@ -36,7 +36,7 @@ const COMPETICIONES = [
       {eq:"C.E. Sagrat Cor F.S. B",              j:3, g:0, e:0, p:3, gf:4,  gc:42, pts:0},
       {eq:"Manacor Fisiomedia FS C",             j:3, g:0, e:0, p:3, gf:3,  gc:47, pts:0}
     ],
-    tablaNota: "Tras la jornada 5. Queda pendiente el Manacor C – Sagrat Cor B de esa jornada.",
+    tablaNota: "Tras la jornada 5. El Manacor C – Sagrat Cor B de esa jornada se juega hoy domingo a las 18:45 y es el duelo de los dos equipos que aún no han puntuado.",
     /* Calendario oficial FFIB. casa:true = jugamos en casa. descansa:true = jornada libre.
        Cuando se juegue, el partido se añade abajo con jornada:N y el calendario muestra el resultado. */
     /* otros = el resto de partidos de la jornada (gl/gv = goles; null si no se ha jugado)
@@ -50,11 +50,11 @@ const COMPETICIONES = [
        otros:[{l:"Joves d'Inca A", v:"Sagrat Cor B", gl:6, gv:3}]},
       {j:3,  fecha:"10 oct", rival:"Joves d'Inca A",       casa:true, hora:"11:30", campo:"Pab. San Pedro Claver",
        descansaEq:"Sagrat Cor B",
-       otros:[{l:"Manacor Fisiomedia C", v:"Sant Joan", gl:null, gv:null}]},   // pendiente
+       otros:[{l:"Manacor Fisiomedia C", v:"Sant Joan", gl:3, gv:11}]},
       {j:4,  fecha:"17 oct", rival:"Sagrat Cor B",         casa:false, hora:"18:45", campo:"P.M. Secar de la Real",
        descansaEq:"Sant Joan",
        otros:[{l:"Joves d'Inca A", v:"Manacor Fisiomedia C", gl:13, gv:0}]},
-      {j:5,  fecha:"24 oct", descansa:true,
+      {j:5,  fecha:"24-25 oct", descansa:true,
        otros:[{l:"Sant Joan", v:"Joves d'Inca A", gl:2, gv:5},
               {l:"Manacor Fisiomedia C", v:"Sagrat Cor B", gl:null, gv:null}]},
       {j:6,  fecha:"1 nov",  rival:"Manacor Fisiomedia C", casa:false, hora:"10:00", campo:"P.M. M. Àngel Nadal",
