@@ -224,20 +224,24 @@ const COMPETICIONES = [
         fecha: "31 oct 2026",
         rival: "C.F.S Joves d'Inca A",
         casa: false,
-        estado: "descanso",
-        gf: 6, gc: 0,
+        estado: "final",
+        gf: 11, gc: 0,
         descanso: "0-6",
-        nota: "Partido de la jornada 8, adelantado del 14 de noviembre.",
+        nota: "Partido de la jornada 8, adelantado del 14 de noviembre. Once goles y portería a cero: Nico la primera parte y Guillermo la segunda. Marcos firmó cuatro goles.",
         goles: [
           {m:"0-1", n:"Marcos", a:"Álvaro"},
           {m:"0-2", n:"Marcos", a:"", nota:"tras robo"},
           {m:"0-3", n:"Jose",   a:"", nota:"de penalti"},
           {m:"0-4", n:"Álvaro", a:"", nota:"tras robo"},
           {m:"0-5", n:"Alonso", a:"Luis"},
-          {m:"0-6", n:"Marcos", a:"", nota:"tras robo"}
+          {m:"0-6", n:"Marcos", a:"", nota:"tras robo"},
+          {m:"0-8", n:"Sebas",  a:"", nota:"tras recuperación"},
+          {m:"0-9", n:"Jose",   a:"Luis"},
+          {m:"0-10",n:"Jose",   a:"Álvaro"},
+          {m:"0-11",n:"Marcos", a:"Alonso"}
         ],
         goleadores: [],
-        porteros: [ {n:"Nico", ge:0} ]
+        porteros: [ {n:"Nico", ge:0}, {n:"Guille", ge:0} ]
       }
     ]
   },
