@@ -237,7 +237,7 @@ const COMPETICIONES = [
           {m:"0-6", n:"Marcos", a:"", nota:"tras robo"}
         ],
         goleadores: [],
-        porteros: []
+        porteros: [ {n:"Nico", ge:0} ]
       }
     ]
   },
