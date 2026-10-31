@@ -63,7 +63,7 @@ const COMPETICIONES = [
       {j:7,  fecha:"7 nov",  rival:"Sant Joan",            casa:true,
        descansaEq:"Manacor Fisiomedia C",
        otros:[{l:"Sagrat Cor B", v:"Joves d'Inca A", gl:null, gv:null}]},
-      {j:8,  fecha:"14 nov", rival:"Joves d'Inca A",       casa:false,
+      {j:8,  fecha:"31 oct", rival:"Joves d'Inca A",       casa:false, nota:"Adelantado del 14 nov",
        descansaEq:"Sagrat Cor B",
        otros:[{l:"Sant Joan", v:"Manacor Fisiomedia C", gl:null, gv:null}]},
       {j:9,  fecha:"21 nov", rival:"Sagrat Cor B",         casa:true,
@@ -218,6 +218,26 @@ const COMPETICIONES = [
         ],
         goleadores: [],
         porteros: [ {n:"Guille", ge:0} ]
+      },
+      {
+        jornada: 8,
+        fecha: "31 oct 2026",
+        rival: "C.F.S Joves d'Inca A",
+        casa: false,
+        estado: "descanso",
+        gf: 6, gc: 0,
+        descanso: "0-6",
+        nota: "Partido de la jornada 8, adelantado del 14 de noviembre.",
+        goles: [
+          {m:"0-1", n:"Marcos", a:"Álvaro"},
+          {m:"0-2", n:"Marcos", a:"", nota:"tras robo"},
+          {m:"0-3", n:"Jose",   a:"", nota:"de penalti"},
+          {m:"0-4", n:"Álvaro", a:"", nota:"tras robo"},
+          {m:"0-5", n:"Alonso", a:"Luis"},
+          {m:"0-6", n:"Marcos", a:"", nota:"tras robo"}
+        ],
+        goleadores: [],
+        porteros: []
       }
     ]
   },
