@@ -220,6 +220,31 @@ const COMPETICIONES = [
         porteros: [ {n:"Guille", ge:0} ]
       },
       {
+        jornada: 6,
+        fecha: "1 nov 2026",
+        rival: "Manacor Fisiomedia FS C",
+        casa: false,
+        estado: "descanso",
+        campo: "P.M. M. Àngel Nadal",
+        gf: 11, gc: 0,
+        descanso: "0-11",
+        goles: [
+          {m:"0-1",  n:"Luis",   a:"Sebas"},
+          {m:"0-2",  n:"Marcos", a:"Luis"},
+          {m:"0-3",  n:"Jose",   a:"Alonso"},
+          {m:"0-4",  n:"Alonso", a:"", nota:"jugada individual"},
+          {m:"0-5",  n:"Alonso", a:"", nota:"jugada individual"},
+          {tipo:"pp", m:"0-6"},
+          {m:"0-7",  n:"Marcos", a:"Jaime"},
+          {m:"0-8",  n:"Guille", a:"Álvaro"},
+          {m:"0-9",  n:"Álvaro", a:"Guille"},
+          {m:"0-10", n:"Jose",   a:"Lluc"},
+          {m:"0-11", n:"Jaime",  a:"Luis"}
+        ],
+        goleadores: [],
+        porteros: []
+      },
+      {
         jornada: 8,
         fecha: "31 oct 2026",
         rival: "C.F.S Joves d'Inca A",
