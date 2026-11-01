@@ -30,13 +30,13 @@ const COMPETICIONES = [
     grupo: "Grupo F",
     /* Clasificación oficial FFIB. nos:true marca al Montesión. */
     tabla: [
-      {eq:"Entreculturas Montesión A", nos:true, j:4, g:4, e:0, p:0, gf:79, gc:2,  pts:12},
-      {eq:"C.F.S Joves d'Inca A",                j:4, g:3, e:0, p:1, gf:26, gc:20, pts:9},
+      {eq:"Entreculturas Montesión A", nos:true, j:6, g:6, e:0, p:0, gf:110, gc:2, pts:18},
+      {eq:"C.F.S Joves d'Inca A",                j:5, g:3, e:0, p:2, gf:26, gc:31, pts:9},
       {eq:"Sant Joan C.E.",                      j:4, g:2, e:0, p:2, gf:19, gc:20, pts:6},
       {eq:"C.E. Sagrat Cor F.S. B",              j:3, g:0, e:0, p:3, gf:4,  gc:42, pts:0},
-      {eq:"Manacor Fisiomedia FS C",             j:3, g:0, e:0, p:3, gf:3,  gc:47, pts:0}
+      {eq:"Manacor Fisiomedia FS C",             j:4, g:0, e:0, p:4, gf:3,  gc:67, pts:0}
     ],
-    tablaNota: "Tras la jornada 5. El Manacor C – Sagrat Cor B de esa jornada se juega hoy domingo a las 18:45 y es el duelo de los dos equipos que aún no han puntuado.",
+    tablaNota: "Incluye nuestros partidos ante el Joves d'Inca A (J8, adelantado) y el Manacor C (J6). Faltan por sumar el Manacor C – Sagrat Cor B (J5) y el Sant Joan – Sagrat Cor B (J6).",
     /* Calendario oficial FFIB. casa:true = jugamos en casa. descansa:true = jornada libre.
        Cuando se juegue, el partido se añade abajo con jornada:N y el calendario muestra el resultado. */
     /* otros = el resto de partidos de la jornada (gl/gv = goles; null si no se ha jugado)
@@ -224,10 +224,11 @@ const COMPETICIONES = [
         fecha: "1 nov 2026",
         rival: "Manacor Fisiomedia FS C",
         casa: false,
-        estado: "descanso",
+        estado: "final",
         campo: "P.M. M. Àngel Nadal",
-        gf: 11, gc: 0,
+        gf: 20, gc: 0,
         descanso: "0-11",
+        nota: "Veinte goles, nueve goleadores distintos y portería a cero. Guillermo jugó de campo y firmó dos goles y dos asistencias; Alonso, José María y Marcos, tres goles cada uno.",
         goles: [
           {m:"0-1",  n:"Luis",   a:"Sebas"},
           {m:"0-2",  n:"Marcos", a:"Luis"},
@@ -239,10 +240,19 @@ const COMPETICIONES = [
           {m:"0-8",  n:"Guille", a:"Álvaro"},
           {m:"0-9",  n:"Álvaro", a:"Guille"},
           {m:"0-10", n:"Jose",   a:"Lluc"},
-          {m:"0-11", n:"Jaime",  a:"Luis"}
+          {m:"0-11", n:"Jaime",  a:"Luis"},
+          {tipo:"pp", m:"0-12"},
+          {m:"0-13", n:"Sebas",  a:"Guille"},
+          {m:"0-14", n:"Alonso", a:"Jose"},
+          {m:"0-15", n:"Lluc",   a:"Marcos"},
+          {m:"0-16", n:"Guille", a:"Sebas"},
+          {m:"0-17", n:"Sebas",  a:"Alonso"},
+          {m:"0-18", n:"Jose",   a:"Lluc"},
+          {m:"0-19", n:"Luis",   a:"Lluc"},
+          {m:"0-20", n:"Marcos", a:"Alonso"}
         ],
         goleadores: [],
-        porteros: []
+        porteros: [ {n:"Nico", ge:0} ]
       },
       {
         jornada: 8,
