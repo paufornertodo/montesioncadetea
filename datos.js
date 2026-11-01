@@ -30,13 +30,13 @@ const COMPETICIONES = [
     grupo: "Grupo F",
     /* Clasificación oficial FFIB. nos:true marca al Montesión. */
     tabla: [
-      {eq:"Entreculturas Montesión A", nos:true, j:6, g:6, e:0, p:0, gf:110, gc:2, pts:18},
-      {eq:"C.F.S Joves d'Inca A",                j:5, g:3, e:0, p:2, gf:26, gc:31, pts:9},
-      {eq:"Sant Joan C.E.",                      j:4, g:2, e:0, p:2, gf:19, gc:20, pts:6},
-      {eq:"C.E. Sagrat Cor F.S. B",              j:3, g:0, e:0, p:3, gf:4,  gc:42, pts:0},
-      {eq:"Manacor Fisiomedia FS C",             j:4, g:0, e:0, p:4, gf:3,  gc:67, pts:0}
+      {eq:"Entreculturas Montesión A", nos:true, j:6, g:6, e:0, p:0, gf:110, gc:2,  pts:18},
+      {eq:"Sant Joan C.E.",                      j:5, g:3, e:0, p:2, gf:30,  gc:21, pts:9},
+      {eq:"C.F.S Joves d'Inca A",                j:5, g:3, e:0, p:2, gf:26,  gc:31, pts:9},
+      {eq:"C.E. Sagrat Cor F.S. B",              j:5, g:1, e:0, p:4, gf:13,  gc:57, pts:3},
+      {eq:"Manacor Fisiomedia FS C",             j:5, g:0, e:0, p:5, gf:7,   gc:75, pts:0}
     ],
-    tablaNota: "Incluye nuestros partidos ante el Joves d'Inca A (J8, adelantado) y el Manacor C (J6). Faltan por sumar el Manacor C – Sagrat Cor B (J5) y el Sant Joan – Sagrat Cor B (J6).",
+    tablaNota: "Clasificación oficial de la FFIB tras la jornada 6 y nuestro partido adelantado de la 8 en Inca.",
     /* Calendario oficial FFIB. casa:true = jugamos en casa. descansa:true = jornada libre.
        Cuando se juegue, el partido se añade abajo con jornada:N y el calendario muestra el resultado. */
     /* otros = el resto de partidos de la jornada (gl/gv = goles; null si no se ha jugado)
@@ -56,11 +56,11 @@ const COMPETICIONES = [
        otros:[{l:"Joves d'Inca A", v:"Manacor Fisiomedia C", gl:13, gv:0}]},
       {j:5,  fecha:"24-25 oct", descansa:true,
        otros:[{l:"Sant Joan", v:"Joves d'Inca A", gl:2, gv:5},
-              {l:"Manacor Fisiomedia C", v:"Sagrat Cor B", gl:null, gv:null}]},
+              {l:"Manacor Fisiomedia C", v:"Sagrat Cor B", gl:4, gv:8}]},
       {j:6,  fecha:"1 nov",  rival:"Manacor Fisiomedia C", casa:false, hora:"10:00", campo:"P.M. M. Àngel Nadal",
        descansaEq:"Joves d'Inca A",
-       otros:[{l:"Sant Joan", v:"Sagrat Cor B", gl:null, gv:null}]},
-      {j:7,  fecha:"7 nov",  rival:"Sant Joan",            casa:true,
+       otros:[{l:"Sant Joan", v:"Sagrat Cor B", gl:11, gv:1}]},
+      {j:7,  fecha:"7 nov",  rival:"Sant Joan",            casa:true, hora:"10:00", campo:"Pab. San Pedro Claver",
        descansaEq:"Manacor Fisiomedia C",
        otros:[{l:"Sagrat Cor B", v:"Joves d'Inca A", gl:null, gv:null}]},
       {j:8,  fecha:"31 oct", rival:"Joves d'Inca A",       casa:false, nota:"Adelantado del 14 nov",
@@ -452,21 +452,32 @@ const PROXIMOS = [
   },
   {
     competicion: "clasificacion",
-    rival: "Manacor Fisiomedia FS C",
-    jornada: "Jornada 6",
-    fecha: "Domingo 1 de noviembre de 2026",
+    rival: "Sant Joan C.E.",
+    jornada: "Jornada 7",
+    fecha: "Sábado 7 de noviembre de 2026",
     convocatoria: "",
     hora: "10:00 h",
-    campo: "P.M. Miquel Àngel Nadal (Manacor) · Fuera",
-    mapa: "https://www.google.com/maps/search/?api=1&query=Poliesportiu+Miquel+Angel+Nadal+Manacor",
-    clasificacion: { puesto:5, pj:3, pts:0, gf:3, gc:47 },
+    campo: "Pab. San Pedro Claver · Casa",
+    mapa: "https://www.google.com/maps/search/?api=1&query=Pabellon+San+Pedro+Claver+Colegio+Montesion+Palma",
+    clasificacion: { puesto:2, pj:5, pts:9, gf:30, gc:21 },
     ultimos: [
-      "J4 · Joves d'Inca 13 – 0 Manacor (fuera)",
-      "J3 · Manacor 3 – 11 Sant Joan (casa)",
-      "J1 · Montesión 23 – 0 Manacor (fuera)"
+      "J6 · Sant Joan 11 – 1 Sagrat Cor B (casa)",
+      "J5 · Sant Joan 2 – 5 Joves d'Inca A (casa)",
+      "J3 · Manacor C 3 – 11 Sant Joan (fuera)",
+      "J2 · Sant Joan 0 – 11 Montesión (casa)"
     ],
-    goleadores: [],
-    nota: "Colista con tres derrotas, tres goles a favor y 47 en contra. Ya le ganamos 23-0 en la primera jornada, y desde entonces ha encajado otros 24. El aviso no es el rival: es el horario, un domingo a las diez de la mañana y en Manacor, con el desplazamiento y el sintético de por medio."
+    goleadores: [
+      {n:"Mateu Company", g:6},
+      {n:"Marc Matas", g:5},
+      {n:"Julià Fiol", g:4},
+      {n:"Miquel Pastor", g:3},
+      {n:"Serafí Pons", g:3},
+      {n:"Toni Gaya", g:3},
+      {n:"Anuar Bouizaouchen", g:3},
+      {n:"Xim Pañego", g:2},
+      {n:"Miquel Joan Jaume", g:1}
+    ],
+    nota: "Segundo del grupo con nueve puntos: tres victorias y dos derrotas, las dos en casa contra los otros de arriba (0-11 con nosotros y 2-5 con el Joves d'Inca). Llega de golear 11-1 al Sagrat Cor B. Reparte mucho el gol: nueve jugadores han marcado y ninguno pasa de seis. En la ida les ganamos 0-11 en Son Juny; ahora toca en casa."
   }
 ];
 
@@ -500,28 +511,28 @@ const TOP_GOLEADORES = {
   titulo: "Top 20 goleadores",
   ambito: "Fase de clasificación cadete futsal, todos los grupos.",
   cuantos: 20,
-  nota: "Datos de la FFIB tras la jornada 5. A partir del empate a goles, el orden es el de la federación.",
+  nota: "Datos de la FFIB tras la jornada 6 (nosotros, con el partido adelantado de la 8 ya sumado). A partir del empate a goles, el orden es el de la federación.",
   lista: [
-    {n:"Alonso Bestard",      eq:"Entreculturas Montesión A", gr:"Grupo F", g:17, d:10, nos:true},
-    {n:"Sebastián Calvo",     eq:"Entreculturas Montesión A", gr:"Grupo F", g:14, d:8,  nos:true},
+    {n:"Alonso Bestard",      eq:"Entreculturas Montesión A", gr:"Grupo F", g:21, d:10, nos:true},
+    {n:"Sebastián Calvo",     eq:"Entreculturas Montesión A", gr:"Grupo F", g:17, d:8,  nos:true},
+    {n:"Fausto García",       eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:16, d:14},
+    {n:"Joan Pere Martín",    eq:"S.E. Alcúdia Futsal B",     gr:"Grupo C", g:14, d:8},
+    {n:"Adrián Cabra",        eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:13, d:10},
+    {n:"Daniel García",       eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:13, d:15},
     {n:"Nicolás Forner",      eq:"Entreculturas Montesión A", gr:"Grupo F", g:13, d:1,  nos:true},
-    {n:"Adrián Cabra",        eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:11, d:10},
-    {n:"Luis Magre",          eq:"Entreculturas Montesión A", gr:"Grupo F", g:10, d:21, nos:true},
-    {n:"Fausto García",       eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:10, d:14},
-    {n:"Daniel García",       eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:10, d:15},
-    {n:"Tomeu Isaac Tortella",eq:"S.E. Alcúdia Futsal B",     gr:"Grupo C", g:9,  d:5},
+    {n:"Marcos Pérez",        eq:"Entreculturas Montesión A", gr:"Grupo F", g:13, d:3,  nos:true},
+    {n:"Tomeu Isaac Tortella",eq:"S.E. Alcúdia Futsal B",     gr:"Grupo C", g:12, d:5},
+    {n:"Luis Magre",          eq:"Entreculturas Montesión A", gr:"Grupo F", g:12, d:21, nos:true},
+    {n:"Mauri Ríos",          eq:"Son Ferrer Atlètic",        gr:"Grupo D", g:10, d:8},
+    {n:"José María Bauzá de Mirabó", eq:"Entreculturas Montesión A", gr:"Grupo F", g:10, nos:true},
+    {n:"Lucas González",      eq:"Racing Club Andratx A",     gr:"Grupo A", g:9},
+    {n:"Álvaro Giménez",      eq:"Entreculturas Montesión A", gr:"Grupo F", g:9,  d:4,  nos:true},
+    {n:"Javier Francia",      eq:"Manacor Fisiomedia FS B",   gr:"Grupo D", g:9},
     {n:"Ion Jerónimo",        eq:"C.D. Son Oliva F.S. A",     gr:"Grupo A", g:8,  d:99},
-    {n:"Xavier Vallés",       eq:"C.F.S Joves d'Inca A",      gr:"Grupo F", g:8,  d:9},
-    {n:"Joan Pere Martín",    eq:"S.E. Alcúdia Futsal B",     gr:"Grupo C", g:7,  d:8},
-    {n:"Álvaro Giménez",      eq:"Entreculturas Montesión A", gr:"Grupo F", g:7,  d:4,  nos:true},
-    {n:"Adrià Descastelli",   eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:7,  d:5},
-    {n:"Bartomeu Amengual",   eq:"S.E. Alcúdia Futsal B",     gr:"Grupo C", g:6,  d:10},
-    {n:"Antonio C. Junior Alves", eq:"F.S. Atlètic Mercadal", gr:"Grupo B", g:6,  d:99},
-    {n:"Carlos González",     eq:"Entreculturas Montesión B", gr:"Grupo E", g:6,  d:10},
-    {n:"Aarón Pérez",         eq:"C.D. Son Oliva F.S. A",     gr:"Grupo A", g:6,  d:10},
-    {n:"Miguel Noguera",      eq:"C.F.S Joves d'Inca A",      gr:"Grupo F", g:6,  d:22},
-    {n:"Marcos Pérez",        eq:"Entreculturas Montesión A", gr:"Grupo F", g:6,  d:3,  nos:true},
-    {n:"Mauri Ríos",          eq:"Son Ferrer Atlètic",        gr:"Grupo D", g:5,  d:8}
+    {n:"Alan Artigao",        eq:"Son Ferrer Atlètic",        gr:"Grupo D", g:8},
+    {n:"Antonio C. Junior Alves", eq:"F.S. Atlètic Mercadal", gr:"Grupo B", g:8,  d:99},
+    {n:"Aitor Tejero",        eq:"S.E. Alcúdia Futsal A",     gr:"Grupo D", g:8},
+    {n:"Xavier Vallés",       eq:"C.F.S Joves d'Inca A",      gr:"Grupo F", g:8,  d:9}
   ]
 };
 
@@ -533,28 +544,27 @@ const PANORAMA = {
   en: "clasificacion",
   titulo: "Cómo va el resto de la fase",
   mejoresSegundos: 4,
-  notaTabla: "A División de Honor van los seis primeros y los cuatro mejores segundos. El orden de los segundos es una estimación por puntos y diferencia de goles; con los grupos a medio jugar puede cambiar, y la federación aplicará su propio criterio.",
-  /* Dos primeros de cada grupo, tras la jornada 2 */
+  notaTabla: "A División de Honor van los seis primeros y los cuatro mejores segundos. Los seis segundos empatan ahora a nueve puntos, así que el orden es una estimación por diferencia de goles; algunos llevan un partido menos, y la federación aplicará su propio criterio.",
+  /* Dos primeros de cada grupo, tras la jornada 6 (FFIB) */
   equipos: [
-    {g:"A", pos:1, eq:"Racing Club Andratx A",     pj:4, gf:27, gc:4,  pts:12},
-    {g:"A", pos:2, eq:"C.D. Son Oliva F.S. A",     pj:4, gf:28, gc:6,  pts:9},
-    {g:"B", pos:1, eq:"Colegio Montesión A",       pj:3, gf:14, gc:4,  pts:9},
-    {g:"B", pos:2, eq:"F.S. Atlètic Mercadal",     pj:3, gf:14, gc:6,  pts:9},
-    {g:"C", pos:1, eq:"S.E. Alcúdia Futsal B",     pj:3, gf:31, gc:5,  pts:9},
-    {g:"C", pos:2, eq:"Manacor Fisiomedia FS A",   pj:3, gf:15, gc:5,  pts:6},
-    {g:"D", pos:1, eq:"S.E. Alcúdia Futsal A",     pj:4, gf:52, gc:6,  pts:12},
-    {g:"D", pos:2, eq:"Son Ferrer Atlètic",        pj:3, gf:25, gc:11, pts:6},
-    {g:"E", pos:1, eq:"Bar Gost-Sagrat Cor B",     pj:4, gf:22, gc:3,  pts:12},
-    {g:"E", pos:2, eq:"Entreculturas Montesión B", pj:3, gf:11, gc:9,  pts:6, nos:true},
-    {g:"F", pos:1, eq:"Entreculturas Montesión A", pj:4, gf:79, gc:2,  pts:12, nos:true},
-    {g:"F", pos:2, eq:"C.F.S Joves d'Inca A",      pj:4, gf:26, gc:20, pts:9}
+    {g:"A", pos:1, eq:"Racing Club Andratx A",     pj:5, gf:39, gc:4,  pts:15},
+    {g:"A", pos:2, eq:"Bar Gost-Sagrat Cor A",     pj:5, gf:35, gc:9,  pts:9},
+    {g:"B", pos:1, eq:"Colegio Montesión A",       pj:5, gf:24, gc:8,  pts:15},
+    {g:"B", pos:2, eq:"C.E. Sagrat Cor F.S. A",    pj:5, gf:17, gc:13, pts:9},
+    {g:"C", pos:1, eq:"S.E. Alcúdia Futsal B",     pj:5, gf:49, gc:10, pts:15},
+    {g:"C", pos:2, eq:"Manacor Fisiomedia FS A",   pj:4, gf:24, gc:5,  pts:9},
+    {g:"D", pos:1, eq:"S.E. Alcúdia Futsal A",     pj:5, gf:70, gc:8,  pts:15},
+    {g:"D", pos:2, eq:"Son Ferrer Atlètic",        pj:5, gf:46, gc:16, pts:9},
+    {g:"E", pos:1, eq:"Bar Gost-Sagrat Cor B",     pj:5, gf:26, gc:3,  pts:15},
+    {g:"E", pos:2, eq:"Entreculturas Montesión B", pj:4, gf:18, gc:12, pts:9, nos:true},
+    {g:"F", pos:1, eq:"Entreculturas Montesión A", pj:6, gf:110,gc:2,  pts:18, nos:true},
+    {g:"F", pos:2, eq:"Sant Joan C.E.",            pj:5, gf:30, gc:21, pts:9}
   ],
   texto: [
-    "La fase son 31 equipos en seis grupos y solo diez pasan a División de Honor: los seis primeros más los cuatro mejores segundos. A falta de cinco jornadas hay cuatro equipos con pleno de victorias, y uno de ellos va destacado en todo.",
-    "Ese somos nosotros: 79 goles a favor y 2 en contra en cuatro partidos. El siguiente en la lista, <b>S.E. Alcúdia Futsal A</b>, lleva 52 y 6, también con pleno. Siguen siendo el rival de referencia y el cruce esperado para la segunda fase, aunque de momento la diferencia de pegada es nuestra.",
-    "Completan los plenos <b>Racing Club Andratx A</b> (27-4) y <b>Bar Gost-Sagrat Cor B</b> (22-3). Y hay una novedad en el grupo C: el <b>Alcúdia B</b> se ha disparado a 31-5 en tres jornadas, con Tortella (5) noveno de la fase con 9 goles. Es el tercer equipo del Alcúdia en esta fase y el club con más representación en el top 20.",
-    "Entre los segundos se ha movido todo otra vez. Entran el <b>Son Oliva A</b> (28-6, con dos jugadores en el top 20), el <b>Mercadal</b> y el <b>Joves d'Inca A</b>, los tres con nueve puntos, y el cuarto puesto es para el <b>Son Ferrer Atlètic</b>. Se quedan fuera el Manacor A y, esta vez sí, el Montesión B.",
-    "Lo mejor de la jornada para el club llega del grupo B: el <b>Colegio Montesión A</b> es líder con pleno de tres victorias y 14-4. Si acaba primero, serían tres equipos del colegio en División de Honor."
+    "Pasada la jornada 6, los seis líderes siguen con pleno de victorias: <b>Racing Andratx A</b>, <b>Colegio Montesión A</b>, <b>Alcúdia B</b>, <b>Alcúdia A</b>, <b>Bar Gost-Sagrat Cor B</b> y nosotros. Cinco de ellos llevan quince puntos; nosotros dieciocho, porque ya hemos jugado el partido adelantado de la jornada 8.",
+    "Nuestros números siguen siendo los mejores de la fase: 110 goles a favor y 2 en contra en seis partidos. El <b>Alcúdia A</b> es el que más se acerca (70-8 en cinco) y sigue siendo el rival de referencia para la segunda fase. Además, entre sus dos equipos, el Alcúdia mete a seis jugadores en el top 20, con Fausto García tercero (16).",
+    "Lo más curioso está entre los segundos: los seis empatan a nueve puntos. Por diferencia de goles entrarían el <b>Son Ferrer</b> (+30), el <b>Bar Gost-Sagrat Cor A</b> (+26), el <b>Manacor A</b> (+19) y el <b>Sant Joan</b> (+9), nuestro próximo rival. Se quedarían fuera el Montesión B (+6) y el Sagrat Cor A (+4), pero con tres partidos por delante esto se va a mover mucho. En tres grupos, además, el tercero también tiene nueve puntos: el Son Oliva A en el A, el Mercadal en el B y el Joves d'Inca A en el nuestro.",
+    "Para el club, buenas noticias en dos grupos: el <b>Colegio Montesión A</b> es líder del B con cinco de cinco, y el <b>Montesión B</b> es segundo del E con un partido menos que el resto, a tiro de los mejores segundos."
   ]
 };
 

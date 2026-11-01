@@ -753,9 +753,11 @@ function pintarCompeticiones(){
     const deEsta = todos.filter(m=>m.comp===c.id);
     const vivos = deEsta.filter(enJuego);
     const jugados = deEsta.filter(m=>!enJuego(m)).slice().reverse();  // el más reciente, arriba
-    const rivalesConPartido = new Set(deEsta.map(m=>m.rival));
+    // un próximo partido se oculta cuando ya está jugado (mismo rival y misma jornada; la vuelta sigue saliendo)
+    const numJ = x => String(x==null?"":x).replace(/\D/g,"");
+    const yaJugado = p => deEsta.some(m => m.rival===p.rival && numJ(m.jornada)===numJ(p.jornada));
     const previa = vivos.map(m=>vivoHTML(m,c)).join("")
-      + PROXIMOS.filter(p=>p.competicion===c.id && !rivalesConPartido.has(p.rival)).map(proximoHTML).join("");
+      + PROXIMOS.filter(p=>p.competicion===c.id && !yaJugado(p)).map(proximoHTML).join("");
     const ficha = (c.formato||[]).length
       ? `<dl class="formato">${c.formato.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>`
       : "";
