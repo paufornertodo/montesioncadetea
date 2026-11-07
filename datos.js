@@ -30,13 +30,13 @@ const COMPETICIONES = [
     grupo: "Grupo F",
     /* Clasificación oficial FFIB. nos:true marca al Montesión. */
     tabla: [
-      {eq:"Entreculturas Montesión A", nos:true, j:6, g:6, e:0, p:0, gf:110, gc:2,  pts:18},
-      {eq:"Sant Joan C.E.",                      j:5, g:3, e:0, p:2, gf:30,  gc:21, pts:9},
+      {eq:"Entreculturas Montesión A", nos:true, j:7, g:7, e:0, p:0, gf:125, gc:3,  pts:21},
       {eq:"C.F.S Joves d'Inca A",                j:5, g:3, e:0, p:2, gf:26,  gc:31, pts:9},
+      {eq:"Sant Joan C.E.",                      j:6, g:3, e:0, p:3, gf:31,  gc:36, pts:9},
       {eq:"C.E. Sagrat Cor F.S. B",              j:5, g:1, e:0, p:4, gf:13,  gc:57, pts:3},
       {eq:"Manacor Fisiomedia FS C",             j:5, g:0, e:0, p:5, gf:7,   gc:75, pts:0}
     ],
-    tablaNota: "Clasificación oficial de la FFIB tras la jornada 6 y nuestro partido adelantado de la 8 en Inca.",
+    tablaNota: "Clasificación FFIB tras la jornada 6, con nuestro partido adelantado de la 8 y el de la 7 contra el Sant Joan ya sumados. Falta el Sagrat Cor B – Joves d'Inca A de la jornada 7.",
     /* Calendario oficial FFIB. casa:true = jugamos en casa. descansa:true = jornada libre.
        Cuando se juegue, el partido se añade abajo con jornada:N y el calendario muestra el resultado. */
     /* otros = el resto de partidos de la jornada (gl/gv = goles; null si no se ha jugado)
@@ -255,6 +255,37 @@ const COMPETICIONES = [
         porteros: [ {n:"Nico", ge:0} ]
       },
       {
+        jornada: 7,
+        fecha: "7 nov 2026",
+        rival: "Sant Joan C.E.",
+        casa: true,
+        estado: "final",
+        campo: "Pab. San Pedro Claver",
+        gf: 15, gc: 1,
+        descanso: "6-1",
+        nota: "Susto de salida: el Sant Joan se adelantó 0-1 y fue el primer partido oficial en que nos tocó remontar. Respuesta inmediata y quince goles seguidos. Lluc repartió cuatro asistencias, José María firmó tres goles y Jaime, Alonso, Marcos y Sebas, dos cada uno.",
+        goles: [
+          {tipo:"rival", m:"0-1"},
+          {m:"1-1",  n:"Jaime",  a:"Alonso"},
+          {m:"2-1",  n:"Alonso", a:"Álvaro"},
+          {m:"3-1",  n:"Álvaro", a:"Lluc"},
+          {m:"4-1",  n:"Marcos", a:"Lluc"},
+          {m:"5-1",  n:"Jaime",  a:"", nota:"al rebote"},
+          {m:"6-1",  n:"Marcos", a:"Lluc"},
+          {m:"7-1",  n:"Jose",   a:"Nico"},
+          {m:"8-1",  n:"Sebas",  a:"Jose"},
+          {m:"9-1",  n:"Luis",   a:"Alonso"},
+          {tipo:"pp", m:"10-1"},
+          {m:"11-1", n:"Jose",   a:"Luis"},
+          {m:"12-1", n:"Sebas",  a:"Nico"},
+          {m:"13-1", n:"Nico",   a:"Jaime"},
+          {m:"14-1", n:"Alonso", a:"", nota:"jugada individual"},
+          {m:"15-1", n:"Jose",   a:"Lluc"}
+        ],
+        goleadores: [],
+        porteros: []
+      },
+      {
         jornada: 8,
         fecha: "31 oct 2026",
         rival: "C.F.S Joves d'Inca A",
@@ -452,32 +483,22 @@ const PROXIMOS = [
   },
   {
     competicion: "clasificacion",
-    rival: "Sant Joan C.E.",
-    jornada: "Jornada 7",
-    fecha: "Sábado 7 de noviembre de 2026",
+    rival: "C.E. Sagrat Cor F.S. B",
+    jornada: "Jornada 9",
+    fecha: "Sábado 21 de noviembre de 2026",
     convocatoria: "",
-    hora: "10:00 h",
+    hora: "",
     campo: "Pab. San Pedro Claver · Casa",
     mapa: "https://www.google.com/maps/search/?api=1&query=Pabellon+San+Pedro+Claver+Colegio+Montesion+Palma",
-    clasificacion: { puesto:2, pj:5, pts:9, gf:30, gc:21 },
+    clasificacion: { puesto:4, pj:5, pts:3, gf:13, gc:57 },
     ultimos: [
-      "J6 · Sant Joan 11 – 1 Sagrat Cor B (casa)",
-      "J5 · Sant Joan 2 – 5 Joves d'Inca A (casa)",
-      "J3 · Manacor C 3 – 11 Sant Joan (fuera)",
-      "J2 · Sant Joan 0 – 11 Montesión (casa)"
+      "J6 · Sant Joan 11 – 1 Sagrat Cor B (fuera)",
+      "J5 · Manacor C 4 – 8 Sagrat Cor B (fuera)",
+      "J4 · Sagrat Cor B 0 – 30 Montesión (casa)",
+      "J2 · Joves d'Inca A 6 – 3 Sagrat Cor B (fuera)"
     ],
-    goleadores: [
-      {n:"Mateu Company", g:6},
-      {n:"Marc Matas", g:5},
-      {n:"Julià Fiol", g:4},
-      {n:"Miquel Pastor", g:3},
-      {n:"Serafí Pons", g:3},
-      {n:"Toni Gaya", g:3},
-      {n:"Anuar Bouizaouchen", g:3},
-      {n:"Xim Pañego", g:2},
-      {n:"Miquel Joan Jaume", g:1}
-    ],
-    nota: "Segundo del grupo con nueve puntos: tres victorias y dos derrotas, las dos en casa contra los otros de arriba (0-11 con nosotros y 2-5 con el Joves d'Inca). Llega de golear 11-1 al Sagrat Cor B. Reparte mucho el gol: nueve jugadores han marcado y ninguno pasa de seis. En la ida les ganamos 0-11 en Son Juny; ahora toca en casa."
+    goleadores: [],
+    nota: "Último del grupo con tres puntos: una sola victoria, 4-8 en Manacor, y 13 goles a favor por 57 en contra. Hoy juega en casa contra el Joves d'Inca A. En la ida les ganamos 0-30 en Secar de la Real. Antes, el fin de semana del 14 es libre: el partido de esa jornada ya lo jugamos en Inca."
   }
 ];
 
@@ -557,13 +578,13 @@ const PANORAMA = {
     {g:"D", pos:2, eq:"Son Ferrer Atlètic",        pj:5, gf:46, gc:16, pts:9},
     {g:"E", pos:1, eq:"Bar Gost-Sagrat Cor B",     pj:5, gf:26, gc:3,  pts:15},
     {g:"E", pos:2, eq:"Entreculturas Montesión B", pj:4, gf:18, gc:12, pts:9, nos:true},
-    {g:"F", pos:1, eq:"Entreculturas Montesión A", pj:6, gf:110,gc:2,  pts:18, nos:true},
-    {g:"F", pos:2, eq:"Sant Joan C.E.",            pj:5, gf:30, gc:21, pts:9}
+    {g:"F", pos:1, eq:"Entreculturas Montesión A", pj:7, gf:125,gc:3,  pts:21, nos:true},
+    {g:"F", pos:2, eq:"C.F.S Joves d'Inca A",      pj:5, gf:26, gc:31, pts:9}
   ],
   texto: [
-    "Pasada la jornada 6, los seis líderes siguen con pleno de victorias: <b>Racing Andratx A</b>, <b>Colegio Montesión A</b>, <b>Alcúdia B</b>, <b>Alcúdia A</b>, <b>Bar Gost-Sagrat Cor B</b> y nosotros. Cinco de ellos llevan quince puntos; nosotros dieciocho, porque ya hemos jugado el partido adelantado de la jornada 8.",
-    "Nuestros números siguen siendo los mejores de la fase: 110 goles a favor y 2 en contra en seis partidos. El <b>Alcúdia A</b> es el que más se acerca (70-8 en cinco) y sigue siendo el rival de referencia para la segunda fase. Además, entre sus dos equipos, el Alcúdia mete a seis jugadores en el top 20, con Fausto García tercero (16).",
-    "Lo más curioso está entre los segundos: los seis empatan a nueve puntos. Por diferencia de goles entrarían el <b>Son Ferrer</b> (+30), el <b>Bar Gost-Sagrat Cor A</b> (+26), el <b>Manacor A</b> (+19) y el <b>Sant Joan</b> (+9), nuestro próximo rival. Se quedarían fuera el Montesión B (+6) y el Sagrat Cor A (+4), pero con tres partidos por delante esto se va a mover mucho. En tres grupos, además, el tercero también tiene nueve puntos: el Son Oliva A en el A, el Mercadal en el B y el Joves d'Inca A en el nuestro.",
+    "Pasada la jornada 6, los seis líderes siguen con pleno de victorias: <b>Racing Andratx A</b>, <b>Colegio Montesión A</b>, <b>Alcúdia B</b>, <b>Alcúdia A</b>, <b>Bar Gost-Sagrat Cor B</b> y nosotros. Cinco de ellos llevan quince puntos; nosotros ya veintiuno, con el 15-1 de hoy al Sant Joan y el partido adelantado de la jornada 8.",
+    "Nuestros números siguen siendo los mejores de la fase: 125 goles a favor y 3 en contra en siete partidos. El <b>Alcúdia A</b> es el que más se acerca (70-8 en cinco) y sigue siendo el rival de referencia para la segunda fase. Además, entre sus dos equipos, el Alcúdia mete a seis jugadores en el top 20, con Fausto García tercero (16).",
+    "Lo más curioso está entre los segundos: los seis empatan a nueve puntos. Por diferencia de goles entrarían el <b>Son Ferrer</b> (+30), el <b>Bar Gost-Sagrat Cor A</b> (+26), el <b>Manacor A</b> (+19) y el <b>Montesión B</b> (+6). Se quedarían fuera el Sagrat Cor A (+4) y, en nuestro grupo, el <b>Joves d'Inca A</b> (-5), que pasa a segundo tras la derrota del Sant Joan de hoy (15-1). Con tres partidos por delante, esto se va a mover mucho. En tres grupos, además, el tercero también tiene nueve puntos: el Son Oliva A en el A, el Mercadal en el B y el Sant Joan en el nuestro.",
     "Para el club, buenas noticias en dos grupos: el <b>Colegio Montesión A</b> es líder del B con cinco de cinco, y el <b>Montesión B</b> es segundo del E con un partido menos que el resto, a tiro de los mejores segundos."
   ]
 };
