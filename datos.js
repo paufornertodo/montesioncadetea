@@ -30,13 +30,13 @@ const COMPETICIONES = [
     grupo: "Grupo F",
     /* Clasificación oficial FFIB. nos:true marca al Montesión. */
     tabla: [
-      {eq:"Entreculturas Montesión A", nos:true, j:7, g:7, e:0, p:0, gf:125, gc:3,  pts:21},
+      {eq:"Entreculturas Montesión A", nos:true, j:8, g:8, e:0, p:0, gf:140, gc:3,  pts:24},
       {eq:"C.F.S Joves d'Inca A",                j:5, g:3, e:0, p:2, gf:26,  gc:31, pts:9},
       {eq:"Sant Joan C.E.",                      j:6, g:3, e:0, p:3, gf:31,  gc:36, pts:9},
-      {eq:"C.E. Sagrat Cor F.S. B",              j:5, g:1, e:0, p:4, gf:13,  gc:57, pts:3},
+      {eq:"C.E. Sagrat Cor F.S. B",              j:6, g:1, e:0, p:5, gf:13,  gc:72, pts:3},
       {eq:"Manacor Fisiomedia FS C",             j:5, g:0, e:0, p:5, gf:7,   gc:75, pts:0}
     ],
-    tablaNota: "Clasificación FFIB tras la jornada 6, con nuestro partido adelantado de la 8 y el de la 7 contra el Sant Joan ya sumados. Falta el Sagrat Cor B – Joves d'Inca A de la jornada 7.",
+    tablaNota: "Clasificación FFIB tras la jornada 6, con nuestros partidos de la 7, la 8 (adelantado) y la 9 (adelantada al 17 nov) ya sumados. Falta el Sagrat Cor B – Joves d'Inca A de la jornada 7. Con la 10 de descanso, hemos terminado la fase.",
     /* Calendario oficial FFIB. casa:true = jugamos en casa. descansa:true = jornada libre.
        Cuando se juegue, el partido se añade abajo con jornada:N y el calendario muestra el resultado. */
     /* otros = el resto de partidos de la jornada (gl/gv = goles; null si no se ha jugado)
@@ -66,7 +66,7 @@ const COMPETICIONES = [
       {j:8,  fecha:"31 oct", rival:"Joves d'Inca A",       casa:false, nota:"Adelantado del 14 nov",
        descansaEq:"Sagrat Cor B",
        otros:[{l:"Sant Joan", v:"Manacor Fisiomedia C", gl:null, gv:null}]},
-      {j:9,  fecha:"21 nov", rival:"Sagrat Cor B",         casa:true,
+      {j:9,  fecha:"17 nov", rival:"Sagrat Cor B",         casa:true, campo:"Pab. San Pedro Claver", nota:"Adelantado del 21 nov",
        descansaEq:"Sant Joan",
        otros:[{l:"Manacor Fisiomedia C", v:"Joves d'Inca A", gl:null, gv:null}]},
       {j:10, fecha:"28 nov", descansa:true,
@@ -308,6 +308,37 @@ const COMPETICIONES = [
         ],
         goleadores: [],
         porteros: [ {n:"Nico", ge:0}, {n:"Guille", ge:0} ]
+      },
+      {
+        jornada: 9,
+        fecha: "17 nov 2026",
+        rival: "C.E. Sagrat Cor F.S. B",
+        casa: true,
+        estado: "final",
+        campo: "Pab. San Pedro Claver",
+        gf: 15, gc: 0,
+        descanso: "10-0",
+        nota: "Jornada 9 adelantada al martes 17. Quince goles, portería a cero de Guillermo con un paradón incluido y la segunda parte acortada. Noche de Alonso: nueve goles y tres asistencias. Cerramos la fase con ocho de ocho, 140 goles a favor y 3 en contra.",
+        goles: [
+          {m:"1-0",  n:"Alonso", a:"Álvaro"},
+          {m:"2-0",  n:"Alonso", a:"", nota:"jugada individual"},
+          {m:"3-0",  n:"Alonso", a:"Marcos"},
+          {m:"4-0",  n:"Nico",   a:"Luis"},
+          {tipo:"pp", m:"5-0"},
+          {tipo:"parada", n:"Guille", nota:"paradón"},
+          {m:"6-0",  n:"Luis",   a:"Alonso"},
+          {m:"7-0",  n:"Alonso", a:"", nota:"al rechace"},
+          {m:"8-0",  n:"Alonso", a:"Luis"},
+          {m:"9-0",  n:"Alonso", a:"Marcos"},
+          {m:"10-0", n:"Álvaro", a:"Alonso"},
+          {m:"11-0", n:"Alonso", a:"Nico"},
+          {m:"12-0", n:"Alonso", a:"Jaime"},
+          {m:"13-0", n:"Alonso", a:"", nota:"tras recuperación"},
+          {m:"14-0", n:"Nico",   a:"Alonso"},
+          {m:"15-0", n:"Luis",   a:"", nota:"jugada individual"}
+        ],
+        goleadores: [],
+        porteros: [ {n:"Guille", ge:0} ]
       }
     ]
   },
@@ -578,13 +609,13 @@ const PANORAMA = {
     {g:"D", pos:2, eq:"Son Ferrer Atlètic",        pj:5, gf:46, gc:16, pts:9},
     {g:"E", pos:1, eq:"Bar Gost-Sagrat Cor B",     pj:5, gf:26, gc:3,  pts:15},
     {g:"E", pos:2, eq:"Entreculturas Montesión B", pj:4, gf:18, gc:12, pts:9, nos:true},
-    {g:"F", pos:1, eq:"Entreculturas Montesión A", pj:7, gf:125,gc:3,  pts:21, nos:true},
+    {g:"F", pos:1, eq:"Entreculturas Montesión A", pj:8, gf:140,gc:3,  pts:24, nos:true},
     {g:"F", pos:2, eq:"C.F.S Joves d'Inca A",      pj:5, gf:26, gc:31, pts:9}
   ],
   texto: [
-    "Pasada la jornada 6, los seis líderes siguen con pleno de victorias: <b>Racing Andratx A</b>, <b>Colegio Montesión A</b>, <b>Alcúdia B</b>, <b>Alcúdia A</b>, <b>Bar Gost-Sagrat Cor B</b> y nosotros. Cinco de ellos llevan quince puntos; nosotros ya veintiuno, con el 15-1 de hoy al Sant Joan y el partido adelantado de la jornada 8.",
-    "Nuestros números siguen siendo los mejores de la fase: 125 goles a favor y 3 en contra en siete partidos. El <b>Alcúdia A</b> es el que más se acerca (70-8 en cinco) y sigue siendo el rival de referencia para la segunda fase. Además, entre sus dos equipos, el Alcúdia mete a seis jugadores en el top 20, con Fausto García tercero (16).",
-    "Lo más curioso está entre los segundos: los seis empatan a nueve puntos. Por diferencia de goles entrarían el <b>Son Ferrer</b> (+30), el <b>Bar Gost-Sagrat Cor A</b> (+26), el <b>Manacor A</b> (+19) y el <b>Montesión B</b> (+6). Se quedarían fuera el Sagrat Cor A (+4) y, en nuestro grupo, el <b>Joves d'Inca A</b> (-5), que pasa a segundo tras la derrota del Sant Joan de hoy (15-1). Con tres partidos por delante, esto se va a mover mucho. En tres grupos, además, el tercero también tiene nueve puntos: el Son Oliva A en el A, el Mercadal en el B y el Sant Joan en el nuestro.",
+    "Pasada la jornada 6, los seis líderes siguen con pleno de victorias: <b>Racing Andratx A</b>, <b>Colegio Montesión A</b>, <b>Alcúdia B</b>, <b>Alcúdia A</b>, <b>Bar Gost-Sagrat Cor B</b> y nosotros. Cinco de ellos llevan quince puntos; nosotros ya hemos terminado con veinticuatro, ocho de ocho, tras el 15-0 al Sagrat Cor B en la jornada 9 adelantada.",
+    "Nuestros números siguen siendo los mejores de la fase: 140 goles a favor y 3 en contra en ocho partidos. El <b>Alcúdia A</b> es el que más se acerca (70-8 en cinco) y sigue siendo el rival de referencia para la segunda fase. Además, entre sus dos equipos, el Alcúdia mete a seis jugadores en el top 20, con Fausto García tercero (16).",
+    "Lo más curioso está entre los segundos: los seis empatan a nueve puntos. Por diferencia de goles entrarían el <b>Son Ferrer</b> (+30), el <b>Bar Gost-Sagrat Cor A</b> (+26), el <b>Manacor A</b> (+19) y el <b>Montesión B</b> (+6). Se quedarían fuera el Sagrat Cor A (+4) y, en nuestro grupo, el <b>Joves d'Inca A</b> (-5), que pasó a segundo tras la derrota del Sant Joan contra nosotros (15-1). Con tres partidos por delante, esto se va a mover mucho. En tres grupos, además, el tercero también tiene nueve puntos: el Son Oliva A en el A, el Mercadal en el B y el Sant Joan en el nuestro.",
     "Para el club, buenas noticias en dos grupos: el <b>Colegio Montesión A</b> es líder del B con cinco de cinco, y el <b>Montesión B</b> es segundo del E con un partido menos que el resto, a tiro de los mejores segundos."
   ]
 };
